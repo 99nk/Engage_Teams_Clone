@@ -1,0 +1,29 @@
+{
+  "name": "engage_ms_teams",
+  "version": "1.0.0",
+  "description": "Microsoft Teams Clone Web Application",
+  "main": "server.js",
+  "dependencies": {
+    "ejs": "^3.1.3",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4",
+    "peer": "^0.5.3",
+    "socket.io": "^2.4.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/99nk/Engage_MS_Teams.git"
+  },
+  "author": "Niharika Kumar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/99nk/Engage_MS_Teams/issues"
+  },
+  "homepage": "https://github.com/99nk/Engage_MS_Teams#readme"
+}
