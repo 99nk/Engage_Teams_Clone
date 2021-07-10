@@ -132,7 +132,12 @@ send.addEventListener("click", (e) => {
         "time":time,
         "message":message
       };
-      firebase.database().ref('Groups/good/'+'1234').set(msgData,(error)=>{
+      var obj=window.location.href;
+      obj.toString();
+      let str=obj;
+      let l=str.length;
+      let ans=str.substr(26,l);
+      firebase.database().ref('Groups/${ans}/'+'1234').set(msgData,(error)=>{
         if(error)
         console.log("failed");
         else
