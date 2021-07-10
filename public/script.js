@@ -137,7 +137,7 @@ send.addEventListener("click", (e) => {
       let str=obj;
       let l=str.length;
       let ans=str.substr(26,l);
-      firebase.database().ref('Groups/${ans}/'+'1234').set(msgData,(error)=>{
+      firebase.database().ref('Groups/check/'+'1234').set(msgData,(error)=>{
         if(error)
         console.log("failed");
         else
