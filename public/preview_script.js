@@ -78,7 +78,8 @@ document.getElementById( 'enter-room' ).addEventListener( 'click', ( e ) => {
       var obj=window.location.href;
       obj.toString();
       let str=obj;
-      let p=str.substr(0,40);
+      let i=str.lastIndexOf('/');//I want till i-1
+      let p=str.substr(0,i);
       window.location.replace(p);
   }
   else {
