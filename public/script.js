@@ -185,55 +185,6 @@ send.addEventListener("click", (e) => {
 
 text.addEventListener("keydown", (e) => {
   if (e.key === "Enter" && text.value.length !== 0) {
-    var msgData={
-      "date":date,
-      "name":name,
-      "time":time,
-      "message":message
-    };
-    var obj=window.location.href;
-    obj.toString();
-    let str=obj;
-    let l=str.length;
-    let ans=str.substr(35,l);
-    //ans='1234';
-    let dis='Groups/'+ans+'/';
-    
-    var date=currentdate.getDate();
-    var month=currentdate.getMonth()+1;
-    var year=currentdate.getFullYear();
-    var randomKey;
-    if(month<10)
-    {
-      if(date<10)
-      {
-        randomKey='0'+date.toString()+'0'+month.toString()+year.toString();
-      }
-      else{
-        randomKey=date.toString()+'0'+month.toString()+year.toString();
-      }
-    }
-    else
-    {
-      if(date<10)
-      {
-        randomKey='0'+date.toString()+month.toString()+year.toString();
-      }
-      else{
-        randomKey=date.toString()+month.toString()+year.toString();
-      }
-    }
-    firebase.database().ref(dis+randomKey).set(msgData,(error)=>{
-      if(error)
-      console.log("failed");
-      else
-      console.log("done");
-    });
-  }
-  else{
-    window.prompt("Incomplete message");
-  }
-
     socket.emit("message", text.value);
     text.value = "";
   }
