@@ -236,7 +236,16 @@ video {
 #showChat {
   display: none;
 }
-
+.myclass {
+  position: absolute;
+  top: 40%;
+  left: 22%;
+  right: 22%;
+  font-size: 40px;
+  justify-content: center;
+  text-align: center;
+  color: #30D5CB;
+}
 .header__back {
   display: none;
   position: absolute;
