@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Engage</string>
+    <string name="login_message">Welcome to Microsoft Teams!</string>
+    <string name="set_password">Set Password</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="enter_email">Enter Email-id</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="login_button">Login ➤</string>
+    <string name="reg_button">Register ➤</string>
+    <string name="my_preference">"com.abc.com.MyPref"</string>
+    <string name="my_preference_key">"com.abc.com.MyPrefKey"</string>
+    <string name="log_to_reg">New to Teams? Register here!</string>
+    <string name="reg_to_log">Already registered? Login here!</string>
+</resources>
