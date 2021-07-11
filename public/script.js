@@ -139,7 +139,32 @@ send.addEventListener("click", (e) => {
       let ans=str.substr(35,l);
       //ans='1234';
       let dis='Groups/'+ans+'/';
-      firebase.database().ref(dis+'1234').set(msgData,(error)=>{
+      var currentdate=new Date();
+      var date=currentdate.getDate();
+      var month=currentdate.getMonth()+1;
+      var year=currentdate.getFullYear();
+      var randomKey;
+      if(month<10)
+      {
+        if(date<10)
+        {
+          randomKey='0'+date.toString()+'0'+month.toString()+year.toString();
+        }
+        else{
+          randomKey=date.toString()+'0'+month.toString()+year.toString();
+        }
+      }
+      else
+      {
+        if(date<10)
+        {
+          randomKey='0'+date.toString()+month.toString()+year.toString();
+        }
+        else{
+          randomKey=date.toString()+month.toString()+year.toString();
+        }
+      }
+      firebase.database().ref(dis+randomKey).set(msgData,(error)=>{
         if(error)
         console.log("failed");
         else
