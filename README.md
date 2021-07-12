@@ -6,7 +6,7 @@ Developed an Android application cloning Microsoft Teams for Engage Program 2021
 **Note: The master branch contains the code for the android application and main branch contains the code of the implementaion of video calling**
 
 ## Table of Contents
-1. [Major Features of Android Application](#Major Features of the Android Application)
+1. [Major Features of Android Application](#major-Features-of-the-android-application)
 2. [Features of the Video Call](#Features of the Video Call:)
 
 ## Major Features of the Android Application
