@@ -51,8 +51,6 @@ Developed an Android application cloning Microsoft Teams for Engage Program 2021
 - Toggle Video and Audio
 - Send Invite to other people
 
-Screenhot 
-
 ## Technologies used
 
 #### Video Calling
