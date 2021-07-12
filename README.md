@@ -1,4 +1,4 @@
-# Engage_MS_Teams
+# Engage MS Teams Clone
 Project Overview: 
 Developed an android application cloning Microsoft Teams for Engage Program 2021 using agile development methodology. Using this application people can connect via video calls and also chat in groups or individually.
 
