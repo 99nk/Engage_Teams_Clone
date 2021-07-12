@@ -13,36 +13,36 @@ Developed an Android application cloning Microsoft Teams for Engage Program 2021
 
 ## Major Features of the Android Application
 
-##### Authentication
+#### Authentication
 - Email id and password login and signup
 - Facility to reset password
 
-##### Video calling
+#### Video calling
 - Joining a video call meet with code from the app
 - Generate a new meeting link and share with people
 - Joining with link possible from both web browser and phone browser
 
-##### Scheduling a meet
+#### Scheduling a meet
 - Saving the team details and meet time
 - Sending email invites to people
 
-##### Upcoming meets and Invites
+#### Upcoming meets and Invites
 - Displays all your invites with accept and reject option
 - Displays all your upcoming meets with join, share and delete option
 
-##### Teams
+#### Teams
 - Automatic team formation when a user schedules a meet
 - Adding of invited people when they accept the invite 
 - Video calling within the team
 - Chatting before, during and after the meet and storing it
 
-##### One-to-one Chatting
+#### One-to-one Chatting
 - Find friends
 - Send connection requests
 - Chat with your friends
 - See their last seen
 
-##### Profile updation 
+#### Profile updation 
 - Update your username and status
 
 ## Features of the Video Call
