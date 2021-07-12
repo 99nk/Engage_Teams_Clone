@@ -2,6 +2,8 @@
 Project Overview: 
 Developed an android application cloning Microsoft Teams for Engage Program 2021 using agile development methodology. Using this application people can connect via video calls and also chat in groups or individually.
 
+Note: The master branch contains the code for the android application and main branch contains the code of the implementaion of video calling
+
 Major Features of the Android Application
 
 Authentication
