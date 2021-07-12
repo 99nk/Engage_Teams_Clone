@@ -1,4 +1,4 @@
-package com.niharika.engage_ms_teams;
+package com.niharika.engage_ms_teams.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,17 +22,16 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.niharika.engage_ms_teams.R;
+import com.niharika.engage_ms_teams.adapter.teamsAdapter;
 import com.niharika.engage_ms_teams.appIntro.WelcomeActivity;
 import com.niharika.engage_ms_teams.authentication.LoginActivity;
-import com.niharika.engage_ms_teams.model.upcomingModel;
+import com.niharika.engage_ms_teams.model.teamsModel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
 
 public class TeamsActivity extends AppCompatActivity
 {
@@ -142,24 +141,29 @@ public class TeamsActivity extends AppCompatActivity
                     switch (item.getItemId()){
 
                         case R.id.nav_home:
-                            Intent intent=new Intent(TeamsActivity.this,HomeActivity.class);
+                            Intent intent=new Intent(TeamsActivity.this, HomeActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
+                            finish();
                             break;
                         case R.id.nav_teams:
                             Intent Pintent=new Intent(TeamsActivity.this, TeamsActivity.class);
                             Pintent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(Pintent);
+                            finish();
                             break;
                         case R.id.nav_chat:
-                            Intent Pintent1=new Intent(TeamsActivity.this,MainChatActivity.class);
+                            Intent Pintent1=new Intent(TeamsActivity.this, MainChatActivity.class);
                             Pintent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(Pintent1);
+                            finish();
                             break;
                         case R.id.nav_profile:
-                            Intent Pintent2=new Intent(TeamsActivity.this,SettingsActivity.class);
+                            Intent Pintent2=new Intent(TeamsActivity.this, SettingsActivity.class);
                             Pintent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(Pintent2);
+                            finish();
+                            break;
                     }
                     return true;
                 }
@@ -187,10 +191,12 @@ public class TeamsActivity extends AppCompatActivity
         if (item.getItemId() == R.id.main_feedback_option)
         {
             startActivity(new Intent(TeamsActivity.this, FeedbackActivity.class));
+            finish();
         }
         if (item.getItemId() == R.id.main_help_option)
         {
             startActivity(new Intent(TeamsActivity.this, WelcomeActivity.class));
+            finish();
         }
         return true;
     }
@@ -200,6 +206,7 @@ public class TeamsActivity extends AppCompatActivity
         Intent loginIntent = new Intent(TeamsActivity.this, LoginActivity.class);
         loginIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(loginIntent);
+        finish();
 
     }
 

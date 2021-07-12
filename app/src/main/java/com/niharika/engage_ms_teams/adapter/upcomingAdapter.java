@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -20,7 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.niharika.engage_ms_teams.HomeActivity;
+import com.niharika.engage_ms_teams.activities.HomeActivity;
 import com.niharika.engage_ms_teams.R;
 import com.niharika.engage_ms_teams.model.upcomingModel;
 

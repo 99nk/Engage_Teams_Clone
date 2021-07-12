@@ -1,8 +1,10 @@
-package com.niharika.engage_ms_teams;
+package com.niharika.engage_ms_teams.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.niharika.engage_ms_teams.R;
 
 public class FeedbackActivity extends AppCompatActivity {
 

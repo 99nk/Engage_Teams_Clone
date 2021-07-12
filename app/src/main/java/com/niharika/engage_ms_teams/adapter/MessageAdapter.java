@@ -1,4 +1,4 @@
-package com.niharika.engage_ms_teams;
+package com.niharika.engage_ms_teams.adapter;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
@@ -13,12 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
+import com.niharika.engage_ms_teams.model.Messages;
+import com.niharika.engage_ms_teams.R;
 
 import java.util.List;
 

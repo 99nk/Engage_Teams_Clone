@@ -1,4 +1,4 @@
-package com.niharika.engage_ms_teams;
+package com.niharika.engage_ms_teams.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,7 +6,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -23,11 +22,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.niharika.engage_ms_teams.R;
 import com.niharika.engage_ms_teams.adapter.inviteAdapter;
 import com.niharika.engage_ms_teams.adapter.upcomingAdapter;
 import com.niharika.engage_ms_teams.appIntro.WelcomeActivity;
 import com.niharika.engage_ms_teams.authentication.LoginActivity;
-import com.niharika.engage_ms_teams.authentication.RegisterActivity;
 import com.niharika.engage_ms_teams.model.inviteModel;
 import com.niharika.engage_ms_teams.model.upcomingModel;
 import com.niharika.engage_ms_teams.utils.ScheduleMeet;
@@ -38,8 +37,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-
-import static com.niharika.engage_ms_teams.R.color.white;
 
 public class HomeActivity extends AppCompatActivity {
     private FirebaseUser currentUser;
@@ -138,6 +135,9 @@ public class HomeActivity extends AppCompatActivity {
                     inviteList.add(user);
                 }
                 myInviteAdapter.notifyDataSetChanged();
+                int i=myInviteAdapter.getItemCount();
+                if(i!=0)
+                    relativeLayout.setBackgroundResource(R.drawable.back);
             }
 
             @Override
@@ -151,11 +151,16 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull  DataSnapshot snapshot)
             {
-                if(n==0)
-                {
-                    n=1;
-                    relativeLayout.setBackgroundResource(R.drawable.back);
-                }
+//                if(n==0)
+//                {
+//                    n=1;
+//                    relativeLayout.setBackgroundResource(R.drawable.back);
+//                }
+//                int i=myUpcomingAdapter.getItemCount();
+//                if(i!=0)
+//                    relativeLayout.setBackgroundResource(R.drawable.back);
+//                else
+//                    relativeLayout.setBackgroundResource(R.drawable.sleep);
 
                 for(DataSnapshot dataSnapshot:snapshot.getChildren())
                 {
@@ -163,6 +168,11 @@ public class HomeActivity extends AppCompatActivity {
                     upcomingList.add(user);
                 }
                 myUpcomingAdapter.notifyDataSetChanged();
+                int i=myUpcomingAdapter.getItemCount();
+                if(i!=0)
+                    relativeLayout.setBackgroundResource(R.drawable.back);
+                else
+                    relativeLayout.setBackgroundResource(R.drawable.sleep);
             }
 
             @Override
@@ -191,12 +201,12 @@ public class HomeActivity extends AppCompatActivity {
                             startActivity(Pintent);
                             break;
                         case R.id.nav_chat:
-                            Intent Pintent1=new Intent(HomeActivity.this,MainChatActivity.class);
+                            Intent Pintent1=new Intent(HomeActivity.this, MainChatActivity.class);
                             Pintent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(Pintent1);
                             break;
                         case R.id.nav_profile:
-                            Intent Pintent2=new Intent(HomeActivity.this,SettingsActivity.class);
+                            Intent Pintent2=new Intent(HomeActivity.this, SettingsActivity.class);
                             Pintent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(Pintent2);
                     }

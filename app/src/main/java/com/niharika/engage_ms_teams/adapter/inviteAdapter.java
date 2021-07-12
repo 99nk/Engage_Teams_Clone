@@ -22,7 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.niharika.engage_ms_teams.HomeActivity;
+import com.niharika.engage_ms_teams.activities.HomeActivity;
 import com.niharika.engage_ms_teams.R;
 import com.niharika.engage_ms_teams.model.inviteModel;
 

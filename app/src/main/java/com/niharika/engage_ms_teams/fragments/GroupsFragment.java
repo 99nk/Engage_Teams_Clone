@@ -1,4 +1,4 @@
-package com.niharika.engage_ms_teams;
+package com.niharika.engage_ms_teams.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +16,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.niharika.engage_ms_teams.activities.GroupChatActivity;
+import com.niharika.engage_ms_teams.R;
 
 import java.util.ArrayList;
 import java.util.HashSet;

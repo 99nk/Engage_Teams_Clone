@@ -23,9 +23,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.niharika.engage_ms_teams.HomeActivity;
+import com.niharika.engage_ms_teams.activities.HomeActivity;
 import com.niharika.engage_ms_teams.R;
-import com.niharika.engage_ms_teams.appIntro.SplashScreen;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

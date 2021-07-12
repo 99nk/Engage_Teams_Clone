@@ -1,4 +1,4 @@
-package com.niharika.engage_ms_teams;
+package com.niharika.engage_ms_teams.fragments;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -27,7 +27,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
+import com.niharika.engage_ms_teams.R;
+import com.niharika.engage_ms_teams.model.Contacts;
 
 
 /**
@@ -94,12 +95,6 @@ public class RequestsFragment extends Fragment {
                                 UsersRef.child(list_user_id).addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
-//                                                if (dataSnapshot.hasChild("image"))
-//                                                {
-//                                                    final String requestProfileImage = dataSnapshot.child("image").getValue().toString();
-//
-//                                                    Picasso.get().load(requestProfileImage).into(holder.profileImage);
-//                                                }
 
                                         final String requestUserName = dataSnapshot.child("name").getValue().toString();
                                         final String requestUserStatus = dataSnapshot.child("status").getValue().toString();
@@ -111,44 +106,26 @@ public class RequestsFragment extends Fragment {
 
                                         holder.userName.setText(requestUserName);
                                         holder.userStatus.setText("wants to connect with you.");
-
-
-                                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                                        holder.AcceptButton.setOnClickListener(new View.OnClickListener() {
                                             @Override
-                                            public void onClick(View view) {
-                                                CharSequence options[] = new CharSequence[]
-                                                        {
-                                                                "Accept",
-                                                                "Cancel"
-                                                        };
-
-                                                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                                                builder.setTitle(requestUserName + "  Chat Request");
-
-                                                builder.setItems(options, new DialogInterface.OnClickListener() {
+                                            public void onClick(View v) {
+                                                ContactsRef.child(currentUserID).child(list_user_id).child("Contact").setValue("Saved").addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
-                                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                                        if (i == 0) {
-                                                            ContactsRef.child(currentUserID).child(list_user_id).child("Contact").setValue("Saved").addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        if (task.isSuccessful()) {
+                                                            ContactsRef.child(list_user_id).child(currentUserID).child("Contact").setValue("Saved").addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                 @Override
                                                                 public void onComplete(@NonNull Task<Void> task) {
                                                                     if (task.isSuccessful()) {
-                                                                        ContactsRef.child(list_user_id).child(currentUserID).child("Contact").setValue("Saved").addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                        ChatRequestsRef.child(currentUserID).child(list_user_id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                             @Override
                                                                             public void onComplete(@NonNull Task<Void> task) {
                                                                                 if (task.isSuccessful()) {
-                                                                                    ChatRequestsRef.child(currentUserID).child(list_user_id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                    ChatRequestsRef.child(list_user_id).child(currentUserID).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                                         @Override
                                                                                         public void onComplete(@NonNull Task<Void> task) {
                                                                                             if (task.isSuccessful()) {
-                                                                                                ChatRequestsRef.child(list_user_id).child(currentUserID).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                                                                    @Override
-                                                                                                    public void onComplete(@NonNull Task<Void> task) {
-                                                                                                        if (task.isSuccessful()) {
-                                                                                                            Toast.makeText(getContext(), "New Contact Saved", Toast.LENGTH_SHORT).show();
-                                                                                                        }
-                                                                                                    }
-                                                                                                });
+                                                                                                Toast.makeText(getContext(), "New Contact Saved", Toast.LENGTH_SHORT).show();
                                                                                             }
                                                                                         }
                                                                                     });
@@ -159,28 +136,32 @@ public class RequestsFragment extends Fragment {
                                                                 }
                                                             });
                                                         }
-                                                        if (i == 1) {
-                                                            ChatRequestsRef.child(currentUserID).child(list_user_id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    }
+                                                });
+
+                                            }
+                                        });
+                                        holder.CancelButton.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                ChatRequestsRef.child(currentUserID).child(list_user_id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        if (task.isSuccessful()) {
+                                                            ChatRequestsRef.child(list_user_id).child(currentUserID).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                 @Override
                                                                 public void onComplete(@NonNull Task<Void> task) {
                                                                     if (task.isSuccessful()) {
-                                                                        ChatRequestsRef.child(list_user_id).child(currentUserID).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                                            @Override
-                                                                            public void onComplete(@NonNull Task<Void> task) {
-                                                                                if (task.isSuccessful()) {
-                                                                                    Toast.makeText(getContext(), "Contact Deleted", Toast.LENGTH_SHORT).show();
-                                                                                }
-                                                                            }
-                                                                        });
+                                                                        Toast.makeText(getContext(), "Contact Deleted", Toast.LENGTH_SHORT).show();
                                                                     }
                                                                 }
                                                             });
                                                         }
                                                     }
                                                 });
-                                                builder.show();
                                             }
                                         });
+
 
                                     }
 
@@ -193,18 +174,11 @@ public class RequestsFragment extends Fragment {
                                 Button request_sent_btn = holder.itemView.findViewById(R.id.request_accept_btn);
                                 request_sent_btn.setText("Req Sent");
 
-                                holder.itemView.findViewById(R.id.request_cancel_btn).setVisibility(View.INVISIBLE);
-
+                                //holder.itemView.findViewById(R.id.request_cancel_btn).setVisibility(View.INVISIBLE);
                                 UsersRef.child(list_user_id).addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
-//                                                if (dataSnapshot.hasChild("image"))
-//                                                {
-//                                                    final String requestProfileImage = dataSnapshot.child("image").getValue().toString();
 //
-//                                                    Picasso.get().load(requestProfileImage).into(holder.profileImage);
-//                                                }
-
                                         final String requestUserName = dataSnapshot.child("name").getValue().toString();
                                         final String requestUserStatus = dataSnapshot.child("status").getValue().toString();
 
@@ -214,46 +188,29 @@ public class RequestsFragment extends Fragment {
                                         holder.profileImage.setImageDrawable(drawable);
 
                                         holder.userName.setText(requestUserName);
+
                                         holder.userStatus.setText("you have sent a request to " + requestUserName);
-
-
-                                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                                        holder.CancelButton.setOnClickListener(new View.OnClickListener() {
                                             @Override
-                                            public void onClick(View view) {
-                                                CharSequence options[] = new CharSequence[]
-                                                        {
-                                                                "Cancel Chat Request"
-                                                        };
-
-                                                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                                                builder.setTitle("Already Sent Request");
-
-                                                builder.setItems(options, new DialogInterface.OnClickListener() {
+                                            public void onClick(View v) {
+                                                ChatRequestsRef.child(currentUserID).child(list_user_id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
-                                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                                        if (i == 0) {
-                                                            ChatRequestsRef.child(currentUserID).child(list_user_id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        if (task.isSuccessful()) {
+                                                            ChatRequestsRef.child(list_user_id).child(currentUserID).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                 @Override
                                                                 public void onComplete(@NonNull Task<Void> task) {
                                                                     if (task.isSuccessful()) {
-                                                                        ChatRequestsRef.child(list_user_id).child(currentUserID).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                                            @Override
-                                                                            public void onComplete(@NonNull Task<Void> task) {
-                                                                                if (task.isSuccessful()) {
-                                                                                    Toast.makeText(getContext(), "you have cancelled the chat request.", Toast.LENGTH_SHORT).show();
-                                                                                }
-                                                                            }
-                                                                        });
+                                                                        Toast.makeText(getContext(), "you have cancelled the chat request.", Toast.LENGTH_SHORT).show();
                                                                     }
                                                                 }
                                                             });
                                                         }
                                                     }
                                                 });
-                                                builder.show();
+
                                             }
                                         });
-
                                     }
 
                                     @Override

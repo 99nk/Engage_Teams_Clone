@@ -6,7 +6,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.niharika.engage_ms_teams.HomeActivity;
 import com.niharika.engage_ms_teams.R;
 import com.niharika.engage_ms_teams.authentication.LoginActivity;
 

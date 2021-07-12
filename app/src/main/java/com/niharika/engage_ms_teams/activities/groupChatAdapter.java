@@ -1,16 +1,17 @@
-package com.niharika.engage_ms_teams;
+package com.niharika.engage_ms_teams.activities;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
+import com.niharika.engage_ms_teams.R;
+import com.niharika.engage_ms_teams.model.groupChatModel;
 
 import java.util.ArrayList;
 

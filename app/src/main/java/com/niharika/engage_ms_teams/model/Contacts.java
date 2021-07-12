@@ -1,4 +1,4 @@
-package com.niharika.engage_ms_teams;
+package com.niharika.engage_ms_teams.model;
 public class Contacts {
     public String name, status, image;
 

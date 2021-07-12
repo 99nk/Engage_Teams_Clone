@@ -1,4 +1,4 @@
-package com.niharika.engage_ms_teams;
+package com.niharika.engage_ms_teams.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +13,9 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
+import com.niharika.engage_ms_teams.activities.GroupChatActivity;
+import com.niharika.engage_ms_teams.R;
+import com.niharika.engage_ms_teams.model.teamsModel;
 
 import java.util.ArrayList;
 
@@ -36,7 +39,7 @@ public class teamsAdapter extends RecyclerView.Adapter<teamsAdapter.TeamsViewHol
     public void onBindViewHolder(@NonNull TeamsViewHolder holder, int position) {
         teamsModel user=list.get(position);
         int l=user.getGroup_name().length();
-        holder.mGroupName.setText(user.getGroup_name().substring(0,l-37));
+        holder.mGroupName.setText(user.getGroup_name().substring(0,l-36));
         String initial="";
         initial+=user.getGroup_name().charAt(0);
         TextDrawable drawable=TextDrawable.builder().buildRect(initial,R.color.teal_200);

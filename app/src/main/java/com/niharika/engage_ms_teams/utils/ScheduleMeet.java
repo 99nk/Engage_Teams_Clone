@@ -5,6 +5,7 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.icu.util.Calendar;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,10 +28,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.niharika.engage_ms_teams.HomeActivity;
-import com.niharika.engage_ms_teams.MainChatActivity;
+import com.niharika.engage_ms_teams.activities.HomeActivity;
 import com.niharika.engage_ms_teams.R;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -88,7 +90,7 @@ public class ScheduleMeet extends AppCompatActivity {
                         set_time.setText(time);
                         checkTime=true;
                     }
-                },HOUR,MINUTE,false);
+                },HOUR,MINUTE,true);
                 timePickerDialog.show();
 
             }
@@ -131,6 +133,7 @@ public class ScheduleMeet extends AppCompatActivity {
                             DatabaseReference inRef = userRef.child(user_id).child("upcoming");
                             String finalGroupName = groupName;
                             inRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @RequiresApi(api = Build.VERSION_CODES.N)
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                                     HashMap user1 = new HashMap();
@@ -138,11 +141,36 @@ public class ScheduleMeet extends AppCompatActivity {
                                     user1.put("date", date);
                                     user1.put("time", time);
                                     user1.put("meetId", finalGroupName);
-                                    java.util.Calendar calendar = java.util.Calendar.getInstance();
-                                    int HOUR = calendar.get(Calendar.HOUR);
-                                    int MINUTE = calendar.get(Calendar.MINUTE);
-                                    String randomKey = HOUR + "" + MINUTE;
-                                    inRef.child(randomKey).updateChildren(user1).addOnCompleteListener(new OnCompleteListener() {
+
+                                    Calendar calFordDate = Calendar.getInstance();
+                                    SimpleDateFormat currentDate = new SimpleDateFormat("dd-MMMM-yyyy");
+                                    String saveCurrentDate = currentDate.format(calFordDate.getTime());
+                                    Calendar calFordTime = Calendar.getInstance();
+                                    SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss");
+                                    String saveCurrentTime = currentTime.format(calFordDate.getTime());
+                                    int date1=calFordDate.get(Calendar.DAY_OF_MONTH);
+                                    int month=calFordDate.get(Calendar.MONTH);
+
+                                    int year=calFordDate.get(Calendar.YEAR);
+                                    String postRandomName;
+                                    if(month<10)
+                                    {
+                                        if(date1<10)
+                                            postRandomName=Integer.toString(year)+"0"+Integer.toString(month)+"0"+Integer.toString(date1)+saveCurrentTime;
+                                        else
+                                            postRandomName=Integer.toString(year)+"0"+Integer.toString(month)+Integer.toString(date1)+saveCurrentTime;
+                                    }
+                                    else
+                                    {
+                                        if(date1<10)
+                                            postRandomName=Integer.toString(year)+Integer.toString(month)+"0"+Integer.toString(date1)+saveCurrentTime;
+                                        else
+                                            postRandomName=Integer.toString(year)+Integer.toString(month)+Integer.toString(date1)+saveCurrentTime;
+                                    }
+
+
+
+                                    inRef.child(postRandomName).updateChildren(user1).addOnCompleteListener(new OnCompleteListener() {
                                         @Override
                                         public void onComplete(@NonNull Task task) {
                                             if (task.isSuccessful())
@@ -217,6 +245,7 @@ public class ScheduleMeet extends AppCompatActivity {
                             String email_id = dataSnapshot.child("email").getValue().toString();
                             DatabaseReference inRef=userRef.child(receipt_id).child("invite");
                             inRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @RequiresApi(api = Build.VERSION_CODES.N)
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot)
                                 {
@@ -227,11 +256,32 @@ public class ScheduleMeet extends AppCompatActivity {
                                         user1.put("date",date);
                                         user1.put("time",time);
                                         user1.put("meetId",groupName);
-                                        java.util.Calendar calendar= java.util.Calendar.getInstance();
-                                        int HOUR=calendar.get(Calendar.HOUR);
-                                        int MINUTE=calendar.get(Calendar.MINUTE);
-                                        String randomKey=HOUR+""+MINUTE;
-                                        userRef.child(receipt_id).child("invite").child(randomKey).updateChildren(user1).addOnCompleteListener(new OnCompleteListener() {
+                                        Calendar calFordDate = Calendar.getInstance();
+                                        SimpleDateFormat currentDate = new SimpleDateFormat("dd-MMMM-yyyy");
+                                        String saveCurrentDate = currentDate.format(calFordDate.getTime());
+                                        Calendar calFordTime = Calendar.getInstance();
+                                        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss");
+                                        String saveCurrentTime = currentTime.format(calFordDate.getTime());
+                                        int date1=calFordDate.get(Calendar.DAY_OF_MONTH);
+                                        int month=calFordDate.get(Calendar.MONTH);
+
+                                        int year=calFordDate.get(Calendar.YEAR);
+                                        String postRandomName;
+                                        if(month<10)
+                                        {
+                                            if(date1<10)
+                                                postRandomName=Integer.toString(year)+"0"+Integer.toString(month)+"0"+Integer.toString(date1)+saveCurrentTime;
+                                            else
+                                                postRandomName=Integer.toString(year)+"0"+Integer.toString(month)+Integer.toString(date1)+saveCurrentTime;
+                                        }
+                                        else
+                                        {
+                                            if(date1<10)
+                                                postRandomName=Integer.toString(year)+Integer.toString(month)+"0"+Integer.toString(date1)+saveCurrentTime;
+                                            else
+                                                postRandomName=Integer.toString(year)+Integer.toString(month)+Integer.toString(date1)+saveCurrentTime;
+                                        }
+                                        userRef.child(receipt_id).child("invite").child(postRandomName).updateChildren(user1).addOnCompleteListener(new OnCompleteListener() {
                                             @Override
                                             public void onComplete(@NonNull Task task)
                                             {
@@ -262,6 +312,7 @@ public class ScheduleMeet extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                finish();
 
             }
         });

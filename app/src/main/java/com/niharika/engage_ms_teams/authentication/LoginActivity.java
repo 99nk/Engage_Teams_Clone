@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.niharika.engage_ms_teams.HomeActivity;
+import com.niharika.engage_ms_teams.activities.HomeActivity;
 import com.niharika.engage_ms_teams.R;
 
 public class LoginActivity extends AppCompatActivity

@@ -1,9 +1,13 @@
-package com.niharika.engage_ms_teams;
+package com.niharika.engage_ms_teams.adapter;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+
+import com.niharika.engage_ms_teams.fragments.ChatsFragment;
+import com.niharika.engage_ms_teams.fragments.ContactsFragment;
+import com.niharika.engage_ms_teams.fragments.RequestsFragment;
 
 public class TabsAccessorAdapter extends FragmentPagerAdapter
 {
