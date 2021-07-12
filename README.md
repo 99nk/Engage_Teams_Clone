@@ -1,13 +1,3 @@
-# Microsoft Engage Mentorship 2021 - MS Teams Clone
-
-An android application connecting people via a video conversation. Developed using **Agile Development** methodology. 
-
-## Requirements
-- Android Studio 4.2
-
-## Step 1 : Creating a new Android Application
-Within Android Studio, create a new app.
-
 # Engage MS Teams Clone
 
 ## Project Overview: 
