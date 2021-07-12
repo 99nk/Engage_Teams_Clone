@@ -1,3 +1,5 @@
+/*Implementing the preview of audio and video before joing the meet and storing the choices in session storage*/
+
 const myVideoGrid = document.getElementById("my-video-grid");
 const myVideoReview = document.createElement("video");
 myVideoReview.muted = true;
@@ -62,6 +64,7 @@ document.getElementById( 'enter-room' ).addEventListener( 'click', ( e ) => {
   let name = document.querySelector( '#username' ).value;
   let checkVideo=myVideoStream.getVideoTracks()[0].enabled.toString();
   let checkAudio=myVideoStream.getAudioTracks()[0].enabled.toString();
+
   if (name) 
   {
       //remove error message, if any
@@ -71,19 +74,17 @@ document.getElementById( 'enter-room' ).addEventListener( 'click', ( e ) => {
       sessionStorage.setItem( 'username', name );
       sessionStorage.setItem('video',checkVideo);
       sessionStorage.setItem('audio',checkAudio);
-      //reload room
-      //location.reload();
-      //go to the meeting
-      //String pre=window.location.toString();
+   
       var obj=window.location.href;
       obj.toString();
       let str=obj;
-      let i=str.lastIndexOf('/');//I want till i-1
+      let i=str.lastIndexOf('/');
       let p=str.substr(0,i);
       window.location.replace(p);
   }
-  else {
+  else 
+  {
     document.querySelector( '#err-msg-username' ).innerHTML = "Please input your name";
-}
+  }
 } );
 

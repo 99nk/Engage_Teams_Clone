@@ -1,11 +1,16 @@
+/*
+Implementing the group video calling and chatting feature
+Chats will be added to the firebase database which is synced with the andoid application.
+*/
 const socket = io("/");
-const videoGrid = document.getElementById("video-grid");
 const myVideo = document.createElement("video");
-const showChat = document.querySelector("#showChat");
+const videoGrid = document.getElementById("video-grid");
 const backBtn = document.querySelector(".header__back");
+const showChat = document.querySelector("#showChat");
 myVideo.muted = true;
 
-var firebaseConfig = {
+var firebaseConfig = 
+{
   apiKey: "AIzaSyBIg8F6DX8k_QAQEx_5qeLI12zfrOSlPCc",
   authDomain: "ms-teams-a2222.firebaseapp.com",
   databaseURL: "https://ms-teams-a2222-default-rtdb.firebaseio.com",
@@ -19,6 +24,7 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+//Checking whether user is operating from android phone or web to accordingly set the layout of chat box
 if(navigator.userAgent.match(/Android/i))
   {
     document.querySelector(".main__message_container").style.left = "0";
@@ -42,9 +48,8 @@ if(navigator.userAgent.match(/Android/i))
     document.querySelector(".header__back").style.display = "block";
   });
 
-const username = sessionStorage.getItem( 'username' );
-const user=username;
-//const user=prompt("name");
+const user = sessionStorage.getItem( 'username' );
+
 var peer = new Peer(undefined, {
   path: "/peerjs",
   host: "/",
@@ -60,6 +65,7 @@ navigator.mediaDevices
   .then((stream) => {
     myVideoStream = stream;
 
+    //Checking the video and audio toggle options from the preview activity retain user's preferences 
     let checkVideo=sessionStorage.getItem('video');
     if(checkVideo==="false")
     {
@@ -77,6 +83,7 @@ navigator.mediaDevices
       muteButton.innerHTML = html;
     }
 
+    //adding users's video stream to the call
     addVideoStream(myVideo, stream);
 
     peer.on("call", (call) => {
@@ -124,8 +131,6 @@ send.addEventListener("click", (e) => {
     var name=user;
     var date=" ";
     var time=" ";
-
-    //var msgRef=firebase.database.ref().child("Groups").child("good").child("123");
     
     if(message!="" && name!="")
     {
@@ -135,12 +140,12 @@ send.addEventListener("click", (e) => {
         "time":time,
         "message":message
       };
+
       var obj=window.location.href;
       obj.toString();
       let str=obj;
       let l=str.length;
       let ans=str.substr(35,l);
-      //ans='1234';
       let dis='Groups/'+ans+'/';
       
       var date=currentdate.getDate();
@@ -150,7 +155,9 @@ send.addEventListener("click", (e) => {
       var min=currentdate.getMinutes()+1;
       var sec=currentdate.getSeconds()+1;
       var time=hours.toString()+':'+min.toString()+':'+sec.toString();
+      
       var randomKey;
+      
       if(month<10)
       {
         if(date<10)
