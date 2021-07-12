@@ -7,7 +7,9 @@ Developed an Android application cloning Microsoft Teams for Engage Program 2021
 
 ## Table of Contents
 1. [Major Features of Android Application](#major-Features-of-the-android-application)
-2. [Features of the Video Call](#Features of the Video Call:)
+2. [Features of the Video Call](#features-of-the-video-call)
+3. [Technologies used](#technologies-used)
+4. [Instructions to Open](#instructions-to-open)
 
 ## Major Features of the Android Application
 
@@ -43,7 +45,7 @@ Developed an Android application cloning Microsoft Teams for Engage Program 2021
 #### Profile updation 
 - Update your username and status
 
-## Features of the Video Call:
+## Features of the Video Call
 - Preview before starting the meet to preset the audio and video options
 - In meet team chats(get stored in the team formed on the app)
 - Toggle Video and Audio
@@ -51,7 +53,7 @@ Developed an Android application cloning Microsoft Teams for Engage Program 2021
 
 Screenhot 
 
-## Technologies used:
+## Technologies used
 
 ### Video Calling
 - Peer JS for creating a P2P data or media stream connection to a remote peer.
