@@ -146,27 +146,32 @@ send.addEventListener("click", (e) => {
       var date=currentdate.getDate();
       var month=currentdate.getMonth()+1;
       var year=currentdate.getFullYear();
+      var hours=currentdate.getHours()+1;
+      var min=currentdate.getMinutes()+1;
+      var sec=currentdate.getSeconds()+1;
+      var time=hours.toString()+':'+min.toString()+':'+sec.toString();
       var randomKey;
       if(month<10)
       {
         if(date<10)
         {
-          randomKey='0'+date.toString()+'0'+month.toString()+year.toString();
+          randomKey=year.toString()+'0'+month.toString()+'0'+date.toString();
         }
         else{
-          randomKey=date.toString()+'0'+month.toString()+year.toString();
+          randomKey=year.toString()+'0'+month.toString()+date.toString();
         }
       }
       else
       {
         if(date<10)
         {
-          randomKey='0'+date.toString()+month.toString()+year.toString();
+          randomKey=year.toString()+month.toString()+'0'+date.toString();
         }
         else{
-          randomKey=date.toString()+month.toString()+year.toString();
+          randomKey=year.toString()+month.toString()+date.toString();
         }
       }
+      randomKey=randomKey+time;
       firebase.database().ref(dis+randomKey).set(msgData,(error)=>{
         if(error)
         console.log("failed");
