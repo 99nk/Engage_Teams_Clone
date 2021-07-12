@@ -122,8 +122,8 @@ send.addEventListener("click", (e) => {
     var currentdate=new Date();
     var message=text.value;
     var name=user;
-    var date=currentdate.getDate();
-    var time=currentdate.getTime();
+    var date=" ";
+    var time=" ";
 
     //var msgRef=firebase.database.ref().child("Groups").child("good").child("123");
     
