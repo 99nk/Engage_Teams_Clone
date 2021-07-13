@@ -9,7 +9,7 @@ Developed an Android application cloning Microsoft Teams for Engage Program 2021
 1. [Major Features of Android Application](#major-Features-of-the-android-application)
 2. [Features of the Video Call](#features-of-the-video-call)
 3. [Technologies used](#technologies-used)
-4. [Instructions to Open](#instructions-to-open)
+4. [Installation Instructions](#installation-instructions)
 
 ## Major Features of the Android Application
 
@@ -61,7 +61,7 @@ Developed an Android application cloning Microsoft Teams for Engage Program 2021
 - Firebase Authentication using email id and password
 - Firebase Realtime Database
 
-## Instructions to open
+## Installation Instructions
 - Directly open the application using the apk
 ###### OR
 1. Open the master branch in your android studio.
