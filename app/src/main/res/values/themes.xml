@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="AlertDialog" parent="Theme.AppCompat.Light.Dialog"></style>
+    <style name="AlertDialog" parent="Theme.AppCompat.DayNight.Dialog"></style>
 
     <style name="customTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="android:windowIsTranslucent">true</item>

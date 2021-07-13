@@ -44,11 +44,9 @@ import java.util.Map;
     Chat Activity is used to implement one-to-one chatting facility
 */
 
-public class ChatActivity extends AppCompatActivity
-{
-    //variables
+public class ChatActivity extends AppCompatActivity {
 
-    private String messageReceiverID,saveCurrentTime, saveCurrentDate, messageReceiverName, messageSenderID;
+    private String messageReceiverID, saveCurrentTime, saveCurrentDate, messageReceiverName, messageSenderID;
 
     private TextView userName, userLastSeen;
     private ImageView userImage;
@@ -56,17 +54,13 @@ public class ChatActivity extends AppCompatActivity
     private EditText MessageInputText;
     private Toolbar ChatToolBar;
 
-    //Firebase
     private FirebaseAuth mAuth;
     private DatabaseReference RootRef;
 
-    //Recycler View
     private final List<Messages> messagesList = new ArrayList<>();
     private LinearLayoutManager linearLayoutManager;
     private MessageAdapter messageAdapter;
     private RecyclerView userMessagesList;
-
-    //private String saveCurrentTime, saveCurrentDate;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -74,22 +68,11 @@ public class ChatActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-//        mAuth = FirebaseAuth.getInstance();
-//        messageSenderID = mAuth.getCurrentUser().getUid();
-//        RootRef = FirebaseDatabase.getInstance().getReference();
-
         messageReceiverID = getIntent().getExtras().get("visit_user_id").toString();
         messageReceiverName = getIntent().getExtras().get("visit_user_name").toString();
 
         //Initialize the variables
         InitializeControllers();
-
-
-//        userName.setText(messageReceiverName);
-//        String initial = "";
-//        initial += messageReceiverName.charAt(0);
-//        TextDrawable drawable = TextDrawable.builder().buildRect(initial, R.color.teal_200);
-//        userImage.setImageDrawable(drawable);
 
         SendMessageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,8 +131,7 @@ public class ChatActivity extends AppCompatActivity
     }
 
 
-    private void DisplayLastSeen()
-    {
+    private void DisplayLastSeen() {
         RootRef.child("Users").child(messageReceiverID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -177,8 +159,7 @@ public class ChatActivity extends AppCompatActivity
 
 
     @Override
-    protected void onStart()
-    {
+    protected void onStart() {
         super.onStart();
 
         RootRef.child("Messages").child(messageSenderID).child(messageReceiverID)
@@ -214,16 +195,12 @@ public class ChatActivity extends AppCompatActivity
     }
 
 
-    private void SendMessage()
-    {
+    private void SendMessage() {
         String messageText = MessageInputText.getText().toString();
 
-        if (TextUtils.isEmpty(messageText))
-        {
+        if (TextUtils.isEmpty(messageText)) {
             Toast.makeText(this, "first write your message...", Toast.LENGTH_SHORT).show();
-        }
-        else
-            {
+        } else {
             String messageSenderRef = "Messages/" + messageSenderID + "/" + messageReceiverID;
             String messageReceiverRef = "Messages/" + messageReceiverID + "/" + messageSenderID;
 
