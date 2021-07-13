@@ -64,11 +64,11 @@ Developed an Android application cloning Microsoft Teams for Engage Program 2021
 ## Instructions to open
 - Directly open the application using the apk
 ###### OR
-- Open the master branch in your android studio.
-- Clone the main branch for web application.
-- Open account in Google Firebase.
-- Create a new project in Firebase.
-- Add both web and android apps to it.
-- Add the google-services.json file in your app
-- Add the firebase code in script.js file of main branch.
-- Deploy the main branch on any hosting site (Eg : Heroku in my case)  
+1. Open the master branch in your android studio.
+2. Clone the main branch for web application.
+3. Open account in Google Firebase.
+4. Create a new project in Firebase.
+5. Add both web and android apps to it.
+6. Add the google-services.json file in your app
+7. Add the firebase code in script.js file of main branch.
+8. Deploy the main branch on any hosting site (Eg : Heroku in my case)  
