@@ -1,78 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp">
+    android:layout_margin="4dp">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:orientation="vertical">
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="You have a meeting invite by "
-                android:textColor="@color/black"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/name"
-                android:textColor="@color/teal_200"
-                android:textSize="20sp"
-                android:text="Name"
-                />
-        </LinearLayout>
+        android:orientation="vertical"
+        android:padding="10dp">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="You have a meeting scheduled by "
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textColor="@color/teal_200"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="at "
-                android:textColor="@color/black"/>
+                android:textColor="@color/black" />
+
             <TextView
+                android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/date"
                 android:text="Date"
                 android:textColor="@color/teal_200"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
+
             <TextView
-                android:layout_marginLeft="5dp"
-                android:textColor="@color/teal_200"
-                android:textSize="20sp"
                 android:id="@+id/time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="time"/>
+                android:layout_marginLeft="5dp"
+                android:text="time"
+                android:textColor="@color/teal_200"
+                android:textSize="20sp" />
         </LinearLayout>
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:gravity="right"
             android:orientation="horizontal">
-            <Button
+
+            <ImageButton
+                android:id="@+id/join_up"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Accept"
-                android:background="#00ff00"
                 android:layout_margin="4dp"
+                android:background="@color/white"
+                android:src="@drawable/ic_baseline_video_call_24"
+                android:text="Join"
                 android:textColor="@color/white"
-                android:id="@+id/accept"/>
-            <Button
-                android:textColor="@color/white"
-                android:layout_margin="4dp"
-                android:background="#ff0000"
-                android:id="@+id/reject"
+                app:tint="@color/purple_500" />
+
+            <ImageButton
+                android:id="@+id/delete_up"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Reject"/>
+                android:layout_gravity="center"
+                android:layout_margin="4dp"
+                android:background="@color/white"
+                android:src="@drawable/ic_baseline_delete_24"
+                android:text="Delete"
+                android:textColor="@color/white"
+                app:tint="@color/purple_500" />
+
+            <ImageButton
+                android:id="@+id/share_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="4dp"
+                android:background="@color/white"
+                android:src="@drawable/ic_baseline_share_24"
+                android:text="share"
+                android:textColor="@color/white"
+                app:tint="@color/purple_500" />
         </LinearLayout>
     </LinearLayout>
 

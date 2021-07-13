@@ -12,48 +12,47 @@
         android:id="@+id/visit_user_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="User Name"
         android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         android:layout_marginTop="50dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center_horizontal"
+        android:text="User Name"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textSize="20sp"
-        android:textStyle="bold"
         android:textColor="@color/teal_200"
-        android:gravity="center_horizontal" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
 
     <TextView
         android:id="@+id/visit_profile_status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Status!"
         android:layout_below="@+id/visit_user_name"
         android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         android:layout_marginTop="25dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center_horizontal"
+        android:text="Status!"
         android:textAlignment="center"
-        android:textColor="@color/black"
         android:textAllCaps="false"
-        android:textSize="16sp"
-        android:gravity="center_horizontal" />
+        android:textColor="@color/black"
+        android:textSize="16sp" />
 
 
     <Button
         android:id="@+id/send_message_request_button"
         android:layout_width="wrap_content"
-        android:padding="15dp"
-        android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
         android:layout_below="@+id/visit_profile_status"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-        android:textColor="@color/black"
         android:background="@drawable/home_button"
-        android:textSize="16sp"
+        android:padding="15dp"
         android:text="Send Message"
         android:textAllCaps="false"
-        />
+        android:textColor="@color/black"
+        android:textSize="16sp" />
 
 
     <Button
@@ -61,15 +60,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/send_message_request_button"
-        android:layout_marginTop="6dp"
         android:layout_marginLeft="65dp"
+        android:layout_marginTop="6dp"
         android:layout_marginRight="65dp"
-        android:textColor="@color/black"
         android:background="@drawable/home_button"
-        android:textSize="20sp"
         android:text="Cancel Chat Request"
         android:textAllCaps="false"
-        android:visibility="invisible"
-        />
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:visibility="invisible" />
 
 </RelativeLayout>

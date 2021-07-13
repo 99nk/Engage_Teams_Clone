@@ -28,8 +28,7 @@ import com.niharika.engage_ms_teams.model.Contacts;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ContactsFragment extends Fragment
-{
+public class ContactsFragment extends Fragment {
     private View ContactsView;
     private RecyclerView myContactsList;
 
@@ -67,8 +66,7 @@ public class ContactsFragment extends Fragment
 
 
     @Override
-    public void onStart()
-    {
+    public void onStart() {
         super.onStart();
 
         FirebaseRecyclerOptions options =
@@ -80,59 +78,36 @@ public class ContactsFragment extends Fragment
         final FirebaseRecyclerAdapter<Contacts, ContactsViewHolder> adapter
                 = new FirebaseRecyclerAdapter<Contacts, ContactsViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull final ContactsViewHolder holder, int position, @NonNull Contacts model)
-            {
+            protected void onBindViewHolder(@NonNull final ContactsViewHolder holder, int position, @NonNull Contacts model) {
                 final String userIDs = getRef(position).getKey();
 
                 UsersRef.child(userIDs).addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onDataChange(DataSnapshot dataSnapshot)
-                    {
-                        if (dataSnapshot.exists())
-                        {
-                            if (dataSnapshot.child("userState").hasChild("state"))
-                            {
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            if (dataSnapshot.child("userState").hasChild("state")) {
                                 String state = dataSnapshot.child("userState").child("state").getValue().toString();
                                 String date = dataSnapshot.child("userState").child("date").getValue().toString();
                                 String time = dataSnapshot.child("userState").child("time").getValue().toString();
 
-                                if (state.equals("online"))
-                                {
+                                if (state.equals("online")) {
                                     holder.onlineIcon.setVisibility(View.VISIBLE);
-                                }
-                                else if (state.equals("offline"))
-                                {
+                                } else if (state.equals("offline")) {
                                     holder.onlineIcon.setVisibility(View.INVISIBLE);
                                 }
-                            }
-                            else
-                            {
+                            } else {
                                 holder.onlineIcon.setVisibility(View.INVISIBLE);
                             }
 
+                            String profileName = dataSnapshot.child("name").getValue().toString();
+                            String profileStatus = dataSnapshot.child("status").getValue().toString();
+                            String initial = "";
+                            initial += profileName.charAt(0);
+                            TextDrawable drawable = TextDrawable.builder().buildRect(initial, R.color.teal_200);
+                            holder.profileImage.setImageDrawable(drawable);
+                            holder.userName.setText(profileName);
+                            holder.userStatus.setText(profileStatus);
 
-//                            if (dataSnapshot.hasChild("image"))
-//                            {
-//                                String userImage = dataSnapshot.child("image").getValue().toString();
-//                                String profileName = dataSnapshot.child("name").getValue().toString();
-//                                String profileStatus = dataSnapshot.child("status").getValue().toString();
-//
-//                                holder.userName.setText(profileName);
-//                                holder.userStatus.setText(profileStatus);
-//                                Picasso.get().load(userImage).placeholder(R.drawable.login_photo).into(holder.profileImage);
-//                            }
-//                            else
-//                            {
-
-                                String profileName = dataSnapshot.child("name").getValue().toString();
-                                String profileStatus = dataSnapshot.child("status").getValue().toString();
-                                String initial="";
-                                initial+=profileName.charAt(0);
-                                TextDrawable drawable=TextDrawable.builder().buildRect(initial,R.color.teal_200);
-                                holder.profileImage.setImageDrawable(drawable);
-                                holder.userName.setText(profileName);
-                                holder.userStatus.setText(profileStatus);
-                            //}
                         }
                     }
 
@@ -145,8 +120,7 @@ public class ContactsFragment extends Fragment
 
             @NonNull
             @Override
-            public ContactsViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i)
-            {
+            public ContactsViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
                 View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.users_display_layout, viewGroup, false);
                 ContactsViewHolder viewHolder = new ContactsViewHolder(view);
                 return viewHolder;
@@ -158,17 +132,13 @@ public class ContactsFragment extends Fragment
     }
 
 
-
-
-    public static class ContactsViewHolder extends RecyclerView.ViewHolder
-    {
+    public static class ContactsViewHolder extends RecyclerView.ViewHolder {
         TextView userName, userStatus;
         ImageView profileImage;
         ImageView onlineIcon;
 
 
-        public ContactsViewHolder(@NonNull View itemView)
-        {
+        public ContactsViewHolder(@NonNull View itemView) {
             super(itemView);
 
             userName = itemView.findViewById(R.id.user_profile_name);

@@ -2,20 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:title="Feedback"
         android:id="@+id/main_feedback_option"
+        android:title="Feedback"
         app:showAsAction="never">
 
     </item>
     <item
-        android:title="Help"
         android:id="@+id/main_help_option"
+        android:title="Help"
         app:showAsAction="never">
 
     </item>
     <item
-        android:title="Logout"
         android:id="@+id/main_logout_option"
+        android:title="Logout"
         app:showAsAction="never">
 
     </item>

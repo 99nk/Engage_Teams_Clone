@@ -20,29 +20,24 @@ import com.niharika.engage_ms_teams.R;
 
 import java.util.List;
 
-public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageViewHolder>
-{
+public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageViewHolder> {
     private List<Messages> userMessagesList;
     private FirebaseAuth mAuth;
     private DatabaseReference usersRef;
 
 
-    public MessageAdapter (List<Messages> userMessagesList)
-    {
+    public MessageAdapter(List<Messages> userMessagesList) {
         this.userMessagesList = userMessagesList;
     }
 
 
-
-    public class MessageViewHolder extends RecyclerView.ViewHolder
-    {
+    public class MessageViewHolder extends RecyclerView.ViewHolder {
         public TextView senderMessageText, receiverMessageText;
         public ImageView receiverProfileImage;
         public ImageView messageSenderPicture, messageReceiverPicture;
 
 
-        public MessageViewHolder(@NonNull View itemView)
-        {
+        public MessageViewHolder(@NonNull View itemView) {
             super(itemView);
 
             senderMessageText = (TextView) itemView.findViewById(R.id.sender_messsage_text);
@@ -54,12 +49,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     }
 
 
-
-
     @NonNull
     @Override
-    public MessageViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i)
-    {
+    public MessageViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.custom_messages_layout, viewGroup, false);
 
@@ -68,11 +60,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     }
 
 
-
     @SuppressLint("ResourceAsColor")
     @Override
-    public void onBindViewHolder(@NonNull final MessageViewHolder messageViewHolder, int i)
-    {
+    public void onBindViewHolder(@NonNull final MessageViewHolder messageViewHolder, int i) {
         String messageSenderId = mAuth.getCurrentUser().getUid();
         Messages messages = userMessagesList.get(i);
 
@@ -81,27 +71,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
         usersRef = FirebaseDatabase.getInstance().getReference().child("Users").child(fromUserID);
 
-//        usersRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot)
-//            {
-//                if (dataSnapshot.hasChild("image"))
-//                {
-//                    String receiverImage = dataSnapshot.child("image").getValue().toString();
-//
-//                    Picasso.get().load(receiverImage).placeholder(R.drawable.login_photo).into(messageViewHolder.receiverProfileImage);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
 
-        String initial="T";
-        //initial+=messageReceiverName.charAt(0);
-        TextDrawable drawable=TextDrawable.builder().buildRect(initial,R.color.teal_200);
+        String initial = "T";
+        TextDrawable drawable = TextDrawable.builder().buildRect(initial, R.color.teal_200);
         messageViewHolder.messageReceiverPicture.setImageDrawable(drawable);
 
         messageViewHolder.receiverMessageText.setVisibility(View.GONE);
@@ -111,23 +83,14 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         messageViewHolder.messageReceiverPicture.setVisibility(View.GONE);
 
 
-        if (fromMessageType.equals("text"))
-        {
-            if (fromUserID.equals(messageSenderId))
-            {
+        if (fromMessageType.equals("text")) {
+            if (fromUserID.equals(messageSenderId)) {
                 messageViewHolder.senderMessageText.setVisibility(View.VISIBLE);
 
                 messageViewHolder.senderMessageText.setBackgroundResource(R.drawable.sender_msg);
                 messageViewHolder.senderMessageText.setTextColor(Color.BLACK);
                 messageViewHolder.senderMessageText.setText(messages.getMessage() + "\n \n" + messages.getTime() + " - " + messages.getDate());
-            }
-            else
-            {
-//                String initial="T";
-//                //initial+=messageReceiverName.charAt(0);
-//                TextDrawable drawable=TextDrawable.builder().buildRect(initial,R.color.teal_200);
-//                messageViewHolder.messageReceiverPicture.setImageDrawable(drawable);
-
+            } else {
                 messageViewHolder.receiverProfileImage.setVisibility(View.VISIBLE);
                 messageViewHolder.receiverMessageText.setVisibility(View.VISIBLE);
 
@@ -139,11 +102,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     }
 
 
-
-
     @Override
-    public int getItemCount()
-    {
+    public int getItemCount() {
         return userMessagesList.size();
     }
 

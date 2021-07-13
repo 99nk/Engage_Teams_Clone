@@ -1,4 +1,4 @@
-package com.niharika.engage_ms_teams.utils;
+package com.niharika.engage_ms_teams.activities;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -28,7 +28,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.niharika.engage_ms_teams.activities.HomeActivity;
 import com.niharika.engage_ms_teams.R;
 
 import java.text.SimpleDateFormat;
@@ -36,61 +35,60 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class ScheduleMeet extends AppCompatActivity {
-    Button setDate,setTime,next,done,send;
-    TextView set_date,set_time;
-    Boolean checkTime,checkDate,checkTitle;
-    String date,time;
+    Button setDate, setTime, next, done, send;
+    TextView set_date, set_time;
+    Boolean checkTime, checkDate, checkTitle;
+    String date, time;
     FirebaseAuth mAuth;
-    DatabaseReference userRef,RootRef;
-    EditText email,team_name;
-    LinearLayout send_invite_mail,enter_meet_details;
-    String user_id,user_email,sender_name;
+    DatabaseReference userRef, RootRef;
+    EditText email, team_name;
+    LinearLayout send_invite_mail, enter_meet_details;
+    String user_id, user_email, sender_name;
     String groupName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_meet);
 
-        checkTime=false;
-        checkDate=false;
-        checkTitle=false;
+        checkTime = false;
+        checkDate = false;
+        checkTitle = false;
 
-        date=" ";
-        time=" ";
-        send_invite_mail=findViewById(R.id.send_invite_mail);
-        enter_meet_details=findViewById(R.id.enter_meet_details_schedule);
-        setDate=findViewById(R.id.setDate);
-        setTime=findViewById(R.id.setTime);
-        next=findViewById(R.id.next);
-        done=findViewById(R.id.done);
-        team_name=findViewById(R.id.team_name);
-        email=findViewById(R.id.email_invite);
-        send=findViewById(R.id.send_invite);
-        mAuth=FirebaseAuth.getInstance();
-        user_id=mAuth.getCurrentUser().getUid();
-        user_email=mAuth.getCurrentUser().getEmail();
-        userRef= FirebaseDatabase.getInstance().getReference().child("Users");
-        RootRef= FirebaseDatabase.getInstance().getReference();
-        set_date=findViewById(R.id.set_date_text);
-        set_time=findViewById(R.id.set_time_text);
+        date = " ";
+        time = " ";
+        send_invite_mail = findViewById(R.id.send_invite_mail);
+        enter_meet_details = findViewById(R.id.enter_meet_details_schedule);
+        setDate = findViewById(R.id.setDate);
+        setTime = findViewById(R.id.setTime);
+        next = findViewById(R.id.next);
+        done = findViewById(R.id.done);
+        team_name = findViewById(R.id.team_name);
+        email = findViewById(R.id.email_invite);
+        send = findViewById(R.id.send_invite);
+        mAuth = FirebaseAuth.getInstance();
+        user_id = mAuth.getCurrentUser().getUid();
+        user_email = mAuth.getCurrentUser().getEmail();
+        userRef = FirebaseDatabase.getInstance().getReference().child("Users");
+        RootRef = FirebaseDatabase.getInstance().getReference();
+        set_date = findViewById(R.id.set_date_text);
+        set_time = findViewById(R.id.set_time_text);
 
 
         setTime.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                java.util.Calendar calendar= java.util.Calendar.getInstance();
-                int HOUR=calendar.get(Calendar.HOUR);
-                int MINUTE=calendar.get(Calendar.MINUTE);
-                TimePickerDialog timePickerDialog=new TimePickerDialog(ScheduleMeet.this, new TimePickerDialog.OnTimeSetListener() {
+            public void onClick(View v) {
+                java.util.Calendar calendar = java.util.Calendar.getInstance();
+                int HOUR = calendar.get(Calendar.HOUR);
+                int MINUTE = calendar.get(Calendar.MINUTE);
+                TimePickerDialog timePickerDialog = new TimePickerDialog(ScheduleMeet.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute)
-                    {
-                        time=hourOfDay+":"+minute;
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        time = hourOfDay + ":" + minute;
                         set_time.setText(time);
-                        checkTime=true;
+                        checkTime = true;
                     }
-                },HOUR,MINUTE,true);
+                }, HOUR, MINUTE, true);
                 timePickerDialog.show();
 
             }
@@ -99,18 +97,18 @@ public class ScheduleMeet extends AppCompatActivity {
         setDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                java.util.Calendar calendar= java.util.Calendar.getInstance();
-                int YEAR=calendar.get(Calendar.YEAR);
-                int MONTH=calendar.get(Calendar.MONTH);
-                int DATE=calendar.get(Calendar.DATE);
-                DatePickerDialog datePickerDialog=new DatePickerDialog(ScheduleMeet.this, new DatePickerDialog.OnDateSetListener() {
+                java.util.Calendar calendar = java.util.Calendar.getInstance();
+                int YEAR = calendar.get(Calendar.YEAR);
+                int MONTH = calendar.get(Calendar.MONTH);
+                int DATE = calendar.get(Calendar.DATE);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(ScheduleMeet.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        date=dayOfMonth+"."+month+"."+year;
+                        date = dayOfMonth + "." + month + "." + year;
                         set_date.setText(date);
-                        checkDate=true;
+                        checkDate = true;
                     }
-                },YEAR,MONTH,DATE);
+                }, YEAR, MONTH, DATE);
                 datePickerDialog.show();
             }
         });
@@ -136,41 +134,34 @@ public class ScheduleMeet extends AppCompatActivity {
                                 @RequiresApi(api = Build.VERSION_CODES.N)
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    HashMap user1 = new HashMap();
-                                    user1.put("name", "me");
-                                    user1.put("date", date);
-                                    user1.put("time", time);
-                                    user1.put("meetId", finalGroupName);
+                                    HashMap meet = new HashMap();
+                                    meet.put("name", "me");
+                                    meet.put("date", date);
+                                    meet.put("time", time);
+                                    meet.put("meetId", finalGroupName);
 
                                     Calendar calFordDate = Calendar.getInstance();
-                                    SimpleDateFormat currentDate = new SimpleDateFormat("dd-MMMM-yyyy");
-                                    String saveCurrentDate = currentDate.format(calFordDate.getTime());
-                                    Calendar calFordTime = Calendar.getInstance();
                                     SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss");
                                     String saveCurrentTime = currentTime.format(calFordDate.getTime());
-                                    int date1=calFordDate.get(Calendar.DAY_OF_MONTH);
-                                    int month=calFordDate.get(Calendar.MONTH);
+                                    int date1 = calFordDate.get(Calendar.DAY_OF_MONTH);
+                                    int month = calFordDate.get(Calendar.MONTH);
 
-                                    int year=calFordDate.get(Calendar.YEAR);
+                                    int year = calFordDate.get(Calendar.YEAR);
                                     String postRandomName;
-                                    if(month<10)
-                                    {
-                                        if(date1<10)
-                                            postRandomName=Integer.toString(year)+"0"+Integer.toString(month)+"0"+Integer.toString(date1)+saveCurrentTime;
+                                    if (month < 10) {
+                                        if (date1 < 10)
+                                            postRandomName = Integer.toString(year) + "0" + Integer.toString(month) + "0" + Integer.toString(date1) + saveCurrentTime;
                                         else
-                                            postRandomName=Integer.toString(year)+"0"+Integer.toString(month)+Integer.toString(date1)+saveCurrentTime;
-                                    }
-                                    else
-                                    {
-                                        if(date1<10)
-                                            postRandomName=Integer.toString(year)+Integer.toString(month)+"0"+Integer.toString(date1)+saveCurrentTime;
+                                            postRandomName = Integer.toString(year) + "0" + Integer.toString(month) + Integer.toString(date1) + saveCurrentTime;
+                                    } else {
+                                        if (date1 < 10)
+                                            postRandomName = Integer.toString(year) + Integer.toString(month) + "0" + Integer.toString(date1) + saveCurrentTime;
                                         else
-                                            postRandomName=Integer.toString(year)+Integer.toString(month)+Integer.toString(date1)+saveCurrentTime;
+                                            postRandomName = Integer.toString(year) + Integer.toString(month) + Integer.toString(date1) + saveCurrentTime;
                                     }
 
 
-
-                                    inRef.child(postRandomName).updateChildren(user1).addOnCompleteListener(new OnCompleteListener() {
+                                    inRef.child(postRandomName).updateChildren(meet).addOnCompleteListener(new OnCompleteListener() {
                                         @Override
                                         public void onComplete(@NonNull Task task) {
                                             if (task.isSuccessful())
@@ -195,7 +186,6 @@ public class ScheduleMeet extends AppCompatActivity {
 
                     //create a group
 
-                    //RootRef.child("Groups").child(groupName).setValue(" ");
                     RootRef.child("Groups").child(groupName).setValue(" ")
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
@@ -214,9 +204,7 @@ public class ScheduleMeet extends AppCompatActivity {
                             });
                     enter_meet_details.setVisibility(View.GONE);
                     send_invite_mail.setVisibility(View.VISIBLE);
-                }
-                else
-                {
+                } else {
                     Toast.makeText(ScheduleMeet.this, "Please fill in all the details", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -224,68 +212,59 @@ public class ScheduleMeet extends AppCompatActivity {
         });
         send.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 //send mail
-                String emailId=email.getText().toString();
+                String emailId = email.getText().toString();
 
-                Intent mailIntent =new Intent(Intent.ACTION_VIEW);
-                Uri data=Uri.parse("mailto:?subject=" + "Meeting link-Microsoft Teams" + "&body=" + "body text " + "&to=" + emailId);
+                Intent mailIntent = new Intent(Intent.ACTION_VIEW);
+                Uri data = Uri.parse("mailto:?subject=" + "Meeting link-Microsoft Teams" + "&body=" + "body text " + "&to=" + emailId);
                 mailIntent.setData(data);
-                startActivity(Intent.createChooser(mailIntent,"Send mail...."));
+                startActivity(Intent.createChooser(mailIntent, "Send mail...."));
 
                 //add meet invite
                 userRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot)
-                    {
-                        for(DataSnapshot dataSnapshot:snapshot.getChildren())
-                        {
-                            String receipt_id=dataSnapshot.child("id").getValue().toString();
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                            String receipt_id = dataSnapshot.child("id").getValue().toString();
                             String email_id = dataSnapshot.child("email").getValue().toString();
-                            DatabaseReference inRef=userRef.child(receipt_id).child("invite");
+                            DatabaseReference inRef = userRef.child(receipt_id).child("invite");
                             inRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @RequiresApi(api = Build.VERSION_CODES.N)
                                 @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot)
-                                {
-                                    if(email_id.equals(emailId))
-                                    {
-                                        HashMap user1=new HashMap();
-                                        user1.put("name",sender_name);
-                                        user1.put("date",date);
-                                        user1.put("time",time);
-                                        user1.put("meetId",groupName);
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    if (email_id.equals(emailId)) {
+                                        HashMap user1 = new HashMap();
+                                        user1.put("name", sender_name);
+                                        user1.put("date", date);
+                                        user1.put("time", time);
+                                        user1.put("meetId", groupName);
                                         Calendar calFordDate = Calendar.getInstance();
                                         SimpleDateFormat currentDate = new SimpleDateFormat("dd-MMMM-yyyy");
                                         String saveCurrentDate = currentDate.format(calFordDate.getTime());
                                         Calendar calFordTime = Calendar.getInstance();
                                         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss");
                                         String saveCurrentTime = currentTime.format(calFordDate.getTime());
-                                        int date1=calFordDate.get(Calendar.DAY_OF_MONTH);
-                                        int month=calFordDate.get(Calendar.MONTH);
+                                        int date1 = calFordDate.get(Calendar.DAY_OF_MONTH);
+                                        int month = calFordDate.get(Calendar.MONTH);
 
-                                        int year=calFordDate.get(Calendar.YEAR);
+                                        int year = calFordDate.get(Calendar.YEAR);
                                         String postRandomName;
-                                        if(month<10)
-                                        {
-                                            if(date1<10)
-                                                postRandomName=Integer.toString(year)+"0"+Integer.toString(month)+"0"+Integer.toString(date1)+saveCurrentTime;
+                                        if (month < 10) {
+                                            if (date1 < 10)
+                                                postRandomName = Integer.toString(year) + "0" + Integer.toString(month) + "0" + Integer.toString(date1) + saveCurrentTime;
                                             else
-                                                postRandomName=Integer.toString(year)+"0"+Integer.toString(month)+Integer.toString(date1)+saveCurrentTime;
-                                        }
-                                        else
-                                        {
-                                            if(date1<10)
-                                                postRandomName=Integer.toString(year)+Integer.toString(month)+"0"+Integer.toString(date1)+saveCurrentTime;
+                                                postRandomName = Integer.toString(year) + "0" + Integer.toString(month) + Integer.toString(date1) + saveCurrentTime;
+                                        } else {
+                                            if (date1 < 10)
+                                                postRandomName = Integer.toString(year) + Integer.toString(month) + "0" + Integer.toString(date1) + saveCurrentTime;
                                             else
-                                                postRandomName=Integer.toString(year)+Integer.toString(month)+Integer.toString(date1)+saveCurrentTime;
+                                                postRandomName = Integer.toString(year) + Integer.toString(month) + Integer.toString(date1) + saveCurrentTime;
                                         }
                                         userRef.child(receipt_id).child("invite").child(postRandomName).updateChildren(user1).addOnCompleteListener(new OnCompleteListener() {
                                             @Override
-                                            public void onComplete(@NonNull Task task)
-                                            {
-                                                if(task.isSuccessful())
+                                            public void onComplete(@NonNull Task task) {
+                                                if (task.isSuccessful())
                                                     Toast.makeText(ScheduleMeet.this, "Invite sent", Toast.LENGTH_SHORT).show();
                                             }
                                         });
@@ -300,9 +279,9 @@ public class ScheduleMeet extends AppCompatActivity {
 
                         }
                     }
+
                     @Override
-                    public void onCancelled(@NonNull DatabaseError error)
-                    {
+                    public void onCancelled(@NonNull DatabaseError error) {
 
                     }
                 });

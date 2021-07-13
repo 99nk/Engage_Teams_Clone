@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     android:id="@+id/cardView_team"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp">
+
     <LinearLayout
-        android:padding="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="15dp">
+
         <ImageView
-            android:layout_marginRight="10dp"
             android:id="@+id/team_icon"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/login_photo"/>
+            android:layout_marginRight="10dp"
+            android:src="@drawable/login_photo" />
+
         <TextView
             android:id="@+id/group_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nme"
             android:layout_gravity="center_vertical"
+            android:text="Nme"
             android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

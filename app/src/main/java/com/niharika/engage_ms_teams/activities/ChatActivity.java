@@ -43,6 +43,7 @@ import java.util.Map;
 /*
     Chat Activity is used to implement one-to-one chatting facility
 */
+
 public class ChatActivity extends AppCompatActivity
 {
     //variables

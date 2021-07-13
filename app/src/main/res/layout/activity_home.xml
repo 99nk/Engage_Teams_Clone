@@ -1,111 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:id="@+id/rl"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@drawable/sleep"
     tools:context=".activities.HomeActivity">
+
     <include
         android:id="@+id/home_bar_layout"
-        layout="@layout/app_bar_layout"
-        >
-    </include>
+        layout="@layout/app_bar_layout"></include>
+
     <LinearLayout
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/home_bar_layout"
         android:id="@+id/joinButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/home_bar_layout"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:weightSum="2">
+
         <Button
-            android:layout_margin="5dp"
-            android:padding="4dp"
-            android:background="@drawable/home_button"
-            android:textColor="@color/teal_200"
-            android:layout_weight="1"
             android:id="@+id/newMeeting"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="Start an Instant Meet" />
-        <Button
-            android:padding="10dp"
             android:layout_margin="5dp"
-            android:background="@drawable/home_button"
-            android:textColor="@color/teal_200"
-            android:textAllCaps="false"
             android:layout_weight="1"
+            android:background="@drawable/home_button"
+            android:padding="4dp"
+            android:text="Start an Instant Meet"
+            android:textAllCaps="false"
+            android:textColor="@color/teal_200" />
+
+        <Button
             android:id="@+id/joinUsingLink"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Join with a code"/>
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/home_button"
+            android:padding="10dp"
+            android:text="Join with a code"
+            android:textAllCaps="false"
+            android:textColor="@color/teal_200" />
 
     </LinearLayout>
+
     <Button
-        android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
-        android:background="@color/design_default_color_primary"
-        android:textColor="@color/white"
-        android:textAllCaps="false"
         android:id="@+id/scheduleMeetButton"
         android:layout_width="match_parent"
-        android:layout_weight="1"
         android:layout_height="wrap_content"
         android:layout_below="@id/joinButtons"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:background="@color/design_default_color_primary"
         android:text="Schedule a meet"
-        />
+        android:textAllCaps="false"
+        android:textColor="@color/white" />
+
     <LinearLayout
+        android:id="@+id/invites"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/invites"
         android:layout_below="@id/scheduleMeetButton"
         android:layout_margin="10dp"
         android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/invites_recycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:id="@+id/invites_recycler"
-            android:scrollbars="vertical"
-            />
+            android:scrollbars="vertical" />
     </LinearLayout>
+
     <LinearLayout
-        android:layout_above="@id/bottom_navigation"
+        android:id="@+id/upcoming_meets"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/upcoming_meets"
+        android:layout_above="@id/bottom_navigation"
         android:layout_below="@id/invites"
         android:layout_margin="10dp"
-        android:orientation="vertical"
-        android:layout_marginBottom="75dp">
+        android:layout_marginBottom="75dp"
+        android:orientation="vertical">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/teal_200"
             android:text="Your Upcoming Meets.."
-            android:textSize="20sp"/>
+            android:textColor="@color/teal_200"
+            android:textSize="20sp" />
+
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/upcoming_recycler"
             android:layout_width="match_parent"
-            android:scrollbars="vertical"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:id="@+id/upcoming_recycler"
-            />
+            android:scrollbars="vertical" />
     </LinearLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="match_parent"
         android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_alignParentBottom="true"
-        app:menu="@menu/bottom_navigation"
-        app:itemTextColor="@color/bottom_bar"
-        app:itemIconTint="@color/bottom_bar"
-        app:labelVisibilityMode="labeled"
         android:background="?android:attr/windowBackground"
+        app:itemIconTint="@color/bottom_bar"
+        app:itemTextColor="@color/bottom_bar"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_navigation"
         tools:ignore="MissingConstraints" />
 
 </RelativeLayout>

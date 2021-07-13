@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -8,16 +7,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
 
         <ImageView
 
-            android:layout_marginRight="10dp"
             android:id="@+id/users_profile_image"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/login_photo"/>
+            android:layout_marginRight="10dp"
+            android:src="@drawable/login_photo" />
 
 
         <LinearLayout
@@ -29,18 +27,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/user_profile_name"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
+                    android:gravity="start"
                     android:text="user name"
                     android:textAlignment="textStart"
                     android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:gravity="start" />
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/user_online_status"
@@ -48,7 +45,7 @@
                     android:layout_height="18dp"
                     android:layout_marginTop="5dp"
                     android:src="@drawable/ic_launcher_background"
-                    android:visibility="invisible"/>
+                    android:visibility="invisible" />
 
             </LinearLayout>
 
@@ -57,12 +54,12 @@
                 android:id="@+id/user_status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="user status"
-                android:textColor="@color/teal_200"
                 android:layout_margin="2dp"
+                android:gravity="start"
+                android:text="user status"
                 android:textAlignment="textStart"
-                android:textSize="16sp"
-                android:gravity="start" />
+                android:textColor="@color/teal_200"
+                android:textSize="16sp" />
 
 
             <LinearLayout
@@ -76,26 +73,25 @@
                     android:id="@+id/request_accept_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
-                    android:textColor="@color/white"
-                    android:text="Accept"
-                    android:textSize="16sp"
-                    android:textAllCaps="false"
                     android:background="@android:color/holo_green_light"
-                    android:visibility="invisible"
-                    />
+                    android:text="Accept"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:visibility="invisible" />
 
                 <Button
                     android:id="@+id/request_cancel_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
-                    android:text="Cancel"
                     android:layout_marginStart="10dp"
-                    android:textSize="16sp"
-                    android:textAllCaps="false"
+                    android:layout_marginLeft="10dp"
                     android:background="#ff0000"
+                    android:text="Cancel"
+                    android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:visibility="invisible"
-                    android:layout_marginLeft="10dp" />
+                    android:textSize="16sp"
+                    android:visibility="invisible" />
 
             </LinearLayout>
 

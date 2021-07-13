@@ -24,7 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.niharika.engage_ms_teams.R;
 import com.niharika.engage_ms_teams.model.Contacts;
 
-public class FindFriendsActivity extends AppCompatActivity {
+public class SearchContactsActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private RecyclerView FindFriendsRecyclerList;
     private DatabaseReference UsersRef;
@@ -72,7 +72,7 @@ public class FindFriendsActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         String visit_user_id = getRef(position).getKey();
 
-                        Intent profileIntent = new Intent(FindFriendsActivity.this, ProfileActivity.class);
+                        Intent profileIntent = new Intent(SearchContactsActivity.this, ProfileActivity.class);
                         profileIntent.putExtra("visit_user_id", visit_user_id);
                         startActivity(profileIntent);
                     }

@@ -1,12 +1,7 @@
 package com.niharika.engage_ms_teams.model;
 
-public class inviteModel
-{
-    String name,date,time,meetId;
-
-    public String getMeetId() {
-        return meetId;
-    }
+public class GroupChatModel {
+    String name, date, message, time;
 
     public String getName() {
         return name;
@@ -14,6 +9,10 @@ public class inviteModel
 
     public String getDate() {
         return date;
+    }
+
+    public String getMessage() {
+        return message;
     }
 
     public String getTime() {

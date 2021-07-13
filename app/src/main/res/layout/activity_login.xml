@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,87 +10,89 @@
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/login_gif"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="-25dp"
         android:layout_width="wrap_content"
         android:layout_height="300dp"
+        android:layout_alignParentTop="true"
         android:layout_marginLeft="4dp"
-        android:src="@drawable/register"/>
+        android:layout_marginTop="-25dp"
+        android:src="@drawable/register" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:padding="10dp"
-        android:layout_centerInParent="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/teal_200"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="-30dp"
-        app:cardCornerRadius="18dp"
-        android:elevation="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp">
+        android:elevation="20dp"
+        android:padding="10dp"
+        app:cardBackgroundColor="@color/teal_200"
+        app:cardCornerRadius="18dp">
+
         <LinearLayout
-            android:screenReaderFocusable="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="20dp"
+            android:screenReaderFocusable="true">
+
             <TextView
                 android:layout_width="wrap_content"
-                android:textSize="20sp"
-                android:textStyle="bold"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:text="@string/login_message"
                 android:textColor="@color/white"
-                android:text="@string/login_message"/>
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <EditText
                 android:id="@+id/log_email"
-                android:layout_marginTop="20dp"
-                android:importantForAutofill="no"
-                android:textColor="@color/white"
-                android:inputType="textEmailAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/enter_email"
+                android:layout_marginTop="20dp"
                 android:backgroundTint="@color/white"
-                android:textColorHint="@color/white"/>
+                android:hint="@string/enter_email"
+                android:importantForAutofill="no"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
+
             <EditText
                 android:id="@+id/log_password"
-                android:importantForAutofill="no"
-                android:textColor="@color/white"
-                android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/enter_password"
                 android:backgroundTint="@color/white"
-                android:textColorHint="@color/white"/>
+                android:hint="@string/enter_password"
+                android:importantForAutofill="no"
+                android:inputType="textPassword"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
 
             <TextView
                 android:id="@+id/forgetPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="10dp"
                 android:paddingLeft="4dp"
-                android:textColor="@color/teal_700"
-                android:textStyle="bold"
-                android:textSize="15sp"
+                android:paddingTop="10dp"
                 android:text="Forgot Password?"
-                />
+                android:textColor="@color/teal_700"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/logbtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"
-                android:text="@string/login_button"
-                android:textStyle="bold"
-                android:textColor="@color/teal_200"
-                android:textAllCaps="false"
-                android:textSize="20sp"
-                android:background="@drawable/button_back_login"
                 android:layout_gravity="end"
-                />
+                android:background="@drawable/button_back_login"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="@string/login_button"
+                android:textAllCaps="false"
+                android:textColor="@color/teal_200"
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -99,22 +100,21 @@
         android:id="@+id/log_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:text="@string/log_to_reg"
         android:layout_below="@id/cardView"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/teal_200"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
         android:background="@color/white"
-        />
+        android:text="@string/log_to_reg"
+        android:textColor="@color/teal_200"
+        android:textSize="16sp" />
 
 
     <ImageView
-        android:contentDescription="@string/login_message"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="30dp"
         android:layout_width="wrap_content"
         android:layout_height="70dp"
-        android:src="@drawable/footer"/>
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:contentDescription="@string/login_message"
+        android:src="@drawable/footer" />
 
 </RelativeLayout>

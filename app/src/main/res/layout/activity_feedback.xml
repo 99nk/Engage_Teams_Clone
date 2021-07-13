@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,27 +9,27 @@
     tools:context=".activities.FeedbackActivity">
 
     <EditText
-        android:background="@color/teal_200"
-        android:padding="20dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:hint="We welcome your feedback! Please write here"
-        android:inputType="textMultiLine"
-        android:gravity="top|left"
+        android:id="@+id/feedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_width="match_parent"
-        android:id="@+id/feedback"
+        android:background="@color/teal_200"
+        android:gravity="top|left"
+        android:hint="We welcome your feedback! Please write here"
+        android:inputType="textMultiLine"
         android:maxHeight="400dp"
-        android:layout_height="wrap_content"/>
+        android:padding="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
 
     <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/feedback"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
-        android:text="Submit"
+        android:layout_marginRight="20dp"
         android:background="@drawable/home_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:text="Submit" />
 </RelativeLayout>

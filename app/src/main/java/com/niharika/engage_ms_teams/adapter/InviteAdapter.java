@@ -24,71 +24,65 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.niharika.engage_ms_teams.activities.HomeActivity;
 import com.niharika.engage_ms_teams.R;
-import com.niharika.engage_ms_teams.model.inviteModel;
+import com.niharika.engage_ms_teams.model.InviteModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class inviteAdapter extends RecyclerView.Adapter<inviteAdapter.inviteViewHolder>
-{
+public class InviteAdapter extends RecyclerView.Adapter<InviteAdapter.inviteViewHolder> {
     Context context;
-    ArrayList <inviteModel> list;
+    ArrayList<InviteModel> list;
     FirebaseAuth mAuth;
     String current_user_id;
 
-    public inviteAdapter(Context context, ArrayList<inviteModel> list) {
+    public InviteAdapter(Context context, ArrayList<InviteModel> list) {
         this.context = context;
         this.list = list;
-        mAuth=FirebaseAuth.getInstance();
-        current_user_id=mAuth.getCurrentUser().getUid();
+        mAuth = FirebaseAuth.getInstance();
+        current_user_id = mAuth.getCurrentUser().getUid();
     }
 
     @NonNull
     @Override
-    public inviteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
-    {
-        View view= LayoutInflater.from(context).inflate(R.layout.invites_item,parent,false);
+    public inviteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_invites, parent, false);
         return new inviteViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull inviteViewHolder holder, int position)
-    {
-        inviteModel user=list.get(position);
+    public void onBindViewHolder(@NonNull inviteViewHolder holder, int position) {
+        InviteModel user = list.get(position);
         holder.mName.setText(user.getName());
         holder.mDate.setText(user.getDate());
         holder.mTime.setText(user.getTime());
         holder.mAccept.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 //shift to upcoming
-                HashMap user1=new HashMap();
-                user1.put("name",user.getName());
-                user1.put("date",user.getDate());
-                user1.put("time",user.getTime());
-                user1.put("meetId",user.getMeetId());
-                java.util.Calendar calendar= java.util.Calendar.getInstance();
-                int HOUR=calendar.get(Calendar.HOUR);
-                int MINUTE=calendar.get(Calendar.MINUTE);
-                String randomKey=HOUR+""+MINUTE;
-                DatabaseReference userRef=FirebaseDatabase.getInstance().getReference().child("Users");
+                HashMap user1 = new HashMap();
+                user1.put("name", user.getName());
+                user1.put("date", user.getDate());
+                user1.put("time", user.getTime());
+                user1.put("meetId", user.getMeetId());
+                java.util.Calendar calendar = java.util.Calendar.getInstance();
+                int HOUR = calendar.get(Calendar.HOUR);
+                int MINUTE = calendar.get(Calendar.MINUTE);
+                String randomKey = HOUR + "" + MINUTE;
+                DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("Users");
                 userRef.child(current_user_id).child("upcoming").child(randomKey).updateChildren(user1).addOnCompleteListener(new OnCompleteListener() {
                     @Override
-                    public void onComplete(@NonNull Task task)
-                    {
-                        if(task.isSuccessful())
+                    public void onComplete(@NonNull Task task) {
+                        if (task.isSuccessful())
                             Toast.makeText(context, "Invite accepted", Toast.LENGTH_SHORT).show();
                     }
                 });
 
                 //delete from incoming
-                Query meetQuery=userRef.child(current_user_id).child("invite").orderByChild("meetId").equalTo(user.getMeetId());
+                Query meetQuery = userRef.child(current_user_id).child("invite").orderByChild("meetId").equalTo(user.getMeetId());
                 meetQuery.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for(DataSnapshot dataSnapshot:snapshot.getChildren())
-                        {
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                             dataSnapshot.getRef().removeValue();
                         }
                         Toast.makeText(context, "Added to upcoming meet", Toast.LENGTH_SHORT).show();
@@ -113,15 +107,13 @@ public class inviteAdapter extends RecyclerView.Adapter<inviteAdapter.inviteView
         });
         holder.mReject.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                DatabaseReference userRef= FirebaseDatabase.getInstance().getReference().child("Users");
-                Query meetQuery=userRef.child(current_user_id).child("invite").orderByChild("meetId").equalTo(user.getMeetId());
+            public void onClick(View v) {
+                DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("Users");
+                Query meetQuery = userRef.child(current_user_id).child("invite").orderByChild("meetId").equalTo(user.getMeetId());
                 meetQuery.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for(DataSnapshot dataSnapshot:snapshot.getChildren())
-                        {
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                             dataSnapshot.getRef().removeValue();
                         }
                         Toast.makeText(context, "Meet Deleted", Toast.LENGTH_SHORT).show();
@@ -138,23 +130,21 @@ public class inviteAdapter extends RecyclerView.Adapter<inviteAdapter.inviteView
     }
 
     @Override
-    public int getItemCount()
-    {
+    public int getItemCount() {
         return list.size();
     }
 
-    public static class inviteViewHolder extends RecyclerView.ViewHolder
-    {
-        TextView mName,mDate,mTime;
-        Button mReject,mAccept;
-        public inviteViewHolder(@NonNull View itemView)
-        {
+    public static class inviteViewHolder extends RecyclerView.ViewHolder {
+        TextView mName, mDate, mTime;
+        Button mReject, mAccept;
+
+        public inviteViewHolder(@NonNull View itemView) {
             super(itemView);
-            mName=itemView.findViewById(R.id.name);
-            mDate=itemView.findViewById(R.id.date);
-            mTime=itemView.findViewById(R.id.time);
-            mReject=itemView.findViewById(R.id.reject);
-            mAccept=itemView.findViewById(R.id.accept);
+            mName = itemView.findViewById(R.id.name);
+            mDate = itemView.findViewById(R.id.date);
+            mTime = itemView.findViewById(R.id.time);
+            mReject = itemView.findViewById(R.id.reject);
+            mAccept = itemView.findViewById(R.id.accept);
         }
     }
 }

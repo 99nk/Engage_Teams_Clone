@@ -1,8 +1,7 @@
 package com.niharika.engage_ms_teams.model;
 
-public class upcomingModel
-{
-    String name,date,time,meetId;
+public class UpcomingModel {
+    String name, date, time, meetId;
 
     public String getMeetId() {
         return meetId;

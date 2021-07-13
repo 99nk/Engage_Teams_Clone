@@ -1,31 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:title="Home"
         android:id="@+id/nav_home"
         android:icon="@drawable/ic_baseline_home_24"
-        >
+        android:title="Home">
 
     </item>
     <item
-        android:title="Teams"
         android:id="@+id/nav_teams"
         android:icon="@drawable/ic_teams"
-        >
+        android:title="Teams">
 
     </item>
     <item
-        android:title="Chat"
         android:id="@+id/nav_chat"
         android:icon="@drawable/ic_chat"
-        >
+        android:title="Chat">
 
     </item>
     <item
-        android:title="Profile"
         android:id="@+id/nav_profile"
         android:icon="@drawable/ic_profile"
-        >
+        android:title="Profile">
 
     </item>
 </menu>

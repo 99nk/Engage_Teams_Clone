@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="20dp"
+    android:orientation="vertical"
     android:padding="20dp">
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Enter your code here!"
-    android:textSize="20sp"
-    android:textColor="@color/teal_200"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter your code here!"
+        android:textColor="@color/teal_200"
+        android:textSize="20sp" />
+
     <EditText
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/teal_200"
-        android:textColorHint="@color/teal_200"
-        android:textColor="@color/black"
         android:id="@+id/enterCodeEdit"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/teal_200"
         android:hint="Eg. aWeqe....."
-        android:layout_height="wrap_content"/>
+        android:textColor="@color/black"
+        android:textColorHint="@color/teal_200" />
 
 
 </LinearLayout>

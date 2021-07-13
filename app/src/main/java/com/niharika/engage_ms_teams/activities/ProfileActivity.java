@@ -26,13 +26,10 @@ import java.util.HashMap;
 
 public class ProfileActivity extends AppCompatActivity {
     private String receiverUserID, senderUserID, Current_State;
-
     private TextView userProfileName, userProfileStatus;
     private Button SendMessageRequestButton, DeclineMessageRequestButton;
-
     private DatabaseReference UserRef, ChatRequestRef, ContactsRef;
     private FirebaseAuth mAuth;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

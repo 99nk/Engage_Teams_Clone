@@ -9,19 +9,15 @@ import com.niharika.engage_ms_teams.fragments.ChatsFragment;
 import com.niharika.engage_ms_teams.fragments.ContactsFragment;
 import com.niharika.engage_ms_teams.fragments.RequestsFragment;
 
-public class TabsAccessorAdapter extends FragmentPagerAdapter
-{
+public class TabsAccessorAdapter extends FragmentPagerAdapter {
 
-    public TabsAccessorAdapter(FragmentManager fm)
-    {
+    public TabsAccessorAdapter(FragmentManager fm) {
         super(fm);
     }
 
     @Override
-    public Fragment getItem(int i)
-    {
-        switch (i)
-        {
+    public Fragment getItem(int i) {
+        switch (i) {
             case 0:
                 ChatsFragment chatsFragment = new ChatsFragment();
                 return chatsFragment;
@@ -41,18 +37,15 @@ public class TabsAccessorAdapter extends FragmentPagerAdapter
 
 
     @Override
-    public int getCount()
-    {
+    public int getCount() {
         return 3;
     }
 
 
     @Nullable
     @Override
-    public CharSequence getPageTitle(int position)
-    {
-        switch (position)
-        {
+    public CharSequence getPageTitle(int position) {
+        switch (position) {
             case 0:
                 return "Chats";
 

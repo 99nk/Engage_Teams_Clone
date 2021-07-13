@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,19 +9,16 @@
 
     <include
         android:id="@+id/chat_toolbar"
-        layout="@layout/app_bar_layout">
-    </include>
+        layout="@layout/app_bar_layout"></include>
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/private_messages_list_of_users"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/chat_toolbar"
         android:layout_above="@+id/chat_linear_layout"
-        android:layout_marginBottom="6dp"
-        >
-    </androidx.recyclerview.widget.RecyclerView>
+        android:layout_below="@+id/chat_toolbar"
+        android:layout_marginBottom="6dp"></androidx.recyclerview.widget.RecyclerView>
 
 
     <RelativeLayout
@@ -30,35 +26,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:padding="5dp"
+        android:layout_alignParentLeft="true"
 
         android:layout_alignParentBottom="true"
         android:background="@android:color/background_light"
         android:orientation="horizontal"
-        android:layout_alignParentLeft="true">
+        android:padding="5dp">
 
 
         <EditText
             android:id="@+id/input_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Type your message here..."
-            android:padding="15dp"
-            android:maxLines="5"
             android:layout_toStartOf="@+id/send_message_btn"
-            android:textColor="@color/black"
-            android:layout_toLeftOf="@+id/send_message_btn" />
+            android:layout_toLeftOf="@+id/send_message_btn"
+            android:hint="Type your message here..."
+            android:maxLines="5"
+            android:padding="15dp"
+            android:textColor="@color/black" />
 
 
         <ImageButton
             android:id="@+id/send_message_btn"
             android:layout_width="60dp"
-            android:layout_centerInParent="true"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_send_24"
             android:layout_alignParentEnd="true"
-            android:backgroundTint="@android:color/white"
             android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:backgroundTint="@android:color/white"
+            android:src="@drawable/ic_baseline_send_24"
             app:tint="@color/teal_200" />
 
     </RelativeLayout>

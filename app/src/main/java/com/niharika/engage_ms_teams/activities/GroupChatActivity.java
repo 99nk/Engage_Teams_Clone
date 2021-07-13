@@ -28,7 +28,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.niharika.engage_ms_teams.R;
-import com.niharika.engage_ms_teams.model.groupChatModel;
+import com.niharika.engage_ms_teams.adapter.GroupChatAdapter;
+import com.niharika.engage_ms_teams.model.GroupChatModel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -47,8 +48,8 @@ public class GroupChatActivity extends AppCompatActivity {
     private String meet_url;
     private String currentGroupName, currentUserID, currentUserName, currentDate, currentTime;
 
-    groupChatAdapter myAdapter;
-    ArrayList<groupChatModel> myList;
+    GroupChatAdapter myAdapter;
+    ArrayList<GroupChatModel> myList;
     RecyclerView recyclerView;
 
 
@@ -62,7 +63,7 @@ public class GroupChatActivity extends AppCompatActivity {
         joinTeamMeet = findViewById(R.id.joinTeamMeet);
 
         //UUID is 36 characters long, so group name is of total length-36
-        
+
         int lengthOfName = currentGroupName.length();
         title = currentGroupName.substring(0, lengthOfName - 36);
         meet_url = currentGroupName;
@@ -76,7 +77,7 @@ public class GroupChatActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         myList = new ArrayList<>();
-        myAdapter = new groupChatAdapter(this, myList);
+        myAdapter = new GroupChatAdapter(this, myList);
         recyclerView.setAdapter(myAdapter);
 
         InitializeFields();
@@ -115,7 +116,7 @@ public class GroupChatActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 if (dataSnapshot.exists()) {
-                    groupChatModel user = dataSnapshot.getValue(groupChatModel.class);
+                    GroupChatModel user = dataSnapshot.getValue(GroupChatModel.class);
                     myList.add(user);
 
                     myAdapter.notifyDataSetChanged();
@@ -124,9 +125,8 @@ public class GroupChatActivity extends AppCompatActivity {
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                if (dataSnapshot.exists())
-                {
-                    groupChatModel user = dataSnapshot.getValue(groupChatModel.class);
+                if (dataSnapshot.exists()) {
+                    GroupChatModel user = dataSnapshot.getValue(GroupChatModel.class);
                     myList.add(user);
                     myAdapter.notifyDataSetChanged();
                 }
@@ -151,8 +151,7 @@ public class GroupChatActivity extends AppCompatActivity {
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    private void InitializeFields()
-    {
+    private void InitializeFields() {
         mToolbar = (Toolbar) findViewById(R.id.group_chat_bar_layout);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle(title);
@@ -228,34 +227,7 @@ public class GroupChatActivity extends AppCompatActivity {
             messageInfoMap.put("date", currentDate);
             messageInfoMap.put("time", currentTime);
             GroupMessageKeyRef.updateChildren(messageInfoMap);
-//            HashMap user1=new HashMap();
-//            user1.put("name",currentUserName);
-//            user1.put("message",message);
-//            user1.put("date",currentDate);
-//            user1.put("time",cu);
-
         }
     }
 
-
-    private void DisplayMessages(DataSnapshot dataSnapshot) {
-//        Iterator iterator = dataSnapshot.getChildren().iterator();
-//
-//        while(iterator.hasNext())
-//        {
-//            String chatDate = (String) ((DataSnapshot)iterator.next()).getValue();
-//            String chatMessage = (String) ((DataSnapshot)iterator.next()).getValue();
-//            String chatName = (String) ((DataSnapshot)iterator.next()).getValue();
-//            String chatTime = (String) ((DataSnapshot)iterator.next()).getValue();
-//
-//            displayTextMessages.append(chatName + " :\n" + chatMessage + "\n" + chatTime + "     " + chatDate + "\n\n\n");
-//
-//            mScrollView.fullScroll(ScrollView.FOCUS_DOWN);
-//        }
-        for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-            groupChatModel user = dataSnapshot1.getValue(groupChatModel.class);
-            myList.add(user);
-        }
-        myAdapter.notifyDataSetChanged();
-    }
 }

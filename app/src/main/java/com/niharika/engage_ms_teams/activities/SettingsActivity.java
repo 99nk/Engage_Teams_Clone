@@ -33,8 +33,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 
-public class SettingsActivity extends AppCompatActivity
-{
+public class SettingsActivity extends AppCompatActivity {
     private Button UpdateAccountSettings;
     private EditText userName, userStatus;
     private String currentUserID;
@@ -45,12 +44,11 @@ public class SettingsActivity extends AppCompatActivity
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        BottomNavigationView bottomNav=findViewById(R.id.bottom_navigation);
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListner);
         bottomNav.getMenu().findItem(R.id.nav_profile).setChecked(true);
 
@@ -58,20 +56,16 @@ public class SettingsActivity extends AppCompatActivity
         currentUserID = mAuth.getCurrentUser().getUid();
         RootRef = FirebaseDatabase.getInstance().getReference();
         InitializeFields();
-        //Why?
-        //userName.setVisibility(View.INVISIBLE);
         UpdateAccountSettings.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
                 UpdateSettings();
             }
         });
         RetrieveUserInfo();
     }
 
-    private void InitializeFields()
-    {
+    private void InitializeFields() {
         UpdateAccountSettings = (Button) findViewById(R.id.update_settings_button);
         userName = (EditText) findViewById(R.id.set_user_name);
         userStatus = (EditText) findViewById(R.id.set_profile_status);
@@ -84,21 +78,16 @@ public class SettingsActivity extends AppCompatActivity
         getSupportActionBar().setTitle("Account Profile");
     }
 
-    private void UpdateSettings()
-    {
+    private void UpdateSettings() {
         String setUserName = userName.getText().toString();
         String setStatus = userStatus.getText().toString();
 
-        if (TextUtils.isEmpty(setUserName))
-        {
+        if (TextUtils.isEmpty(setUserName)) {
             Toast.makeText(this, "Please write your user name first....", Toast.LENGTH_SHORT).show();
         }
-        if (TextUtils.isEmpty(setStatus))
-        {
+        if (TextUtils.isEmpty(setStatus)) {
             Toast.makeText(this, "Please write your status....", Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
+        } else {
             HashMap<String, Object> profileMap = new HashMap<>();
             profileMap.put("uid", currentUserID);
             profileMap.put("name", setUserName);
@@ -106,15 +95,11 @@ public class SettingsActivity extends AppCompatActivity
             RootRef.child("Users").child(currentUserID).updateChildren(profileMap)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
-                        public void onComplete(@NonNull Task<Void> task)
-                        {
-                            if (task.isSuccessful())
-                            {
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
                                 SendUserToMainActivity();
                                 Toast.makeText(SettingsActivity.this, "Profile Updated Successfully...", Toast.LENGTH_SHORT).show();
-                            }
-                            else
-                            {
+                            } else {
                                 String message = task.getException().toString();
                                 Toast.makeText(SettingsActivity.this, "Error: " + message, Toast.LENGTH_SHORT).show();
                             }
@@ -124,27 +109,22 @@ public class SettingsActivity extends AppCompatActivity
     }
 
 
-
-    private void RetrieveUserInfo()
-    {
+    private void RetrieveUserInfo() {
         RootRef.child("Users").child(currentUserID)
                 .addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onDataChange(DataSnapshot dataSnapshot)
-                    {
-                       if ((dataSnapshot.exists()) && (dataSnapshot.hasChild("name")))
-                        {
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if ((dataSnapshot.exists()) && (dataSnapshot.hasChild("name"))) {
                             String retrieveUserName = dataSnapshot.child("name").getValue().toString();
                             String retrievesStatus = dataSnapshot.child("status").getValue().toString();
                             userName.setText(retrieveUserName);
                             userStatus.setText(retrievesStatus);
-                        }
-                        else
-                        {
+                        } else {
                             userName.setVisibility(View.VISIBLE);
                             Toast.makeText(SettingsActivity.this, "Please set & update your profile information...", Toast.LENGTH_SHORT).show();
                         }
                     }
+
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
 
@@ -152,34 +132,34 @@ public class SettingsActivity extends AppCompatActivity
                 });
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navListner=
+    private BottomNavigationView.OnNavigationItemSelectedListener navListner =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-                    switch (item.getItemId()){
+                    switch (item.getItemId()) {
 
                         case R.id.nav_home:
-                            Intent intent=new Intent(SettingsActivity.this, HomeActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            Intent intent = new Intent(SettingsActivity.this, HomeActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                             finish();
                             break;
                         case R.id.nav_teams:
-                            Intent Pintent=new Intent(SettingsActivity.this, TeamsActivity.class);
-                            Pintent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            Intent Pintent = new Intent(SettingsActivity.this, TeamsActivity.class);
+                            Pintent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(Pintent);
                             finish();
                             break;
                         case R.id.nav_chat:
-                            Intent Pintent1=new Intent(SettingsActivity.this, MainChatActivity.class);
-                            Pintent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            Intent Pintent1 = new Intent(SettingsActivity.this, MainChatActivity.class);
+                            Pintent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(Pintent1);
                             finish();
                             break;
                         case R.id.nav_profile:
-                            Intent Pintent2=new Intent(SettingsActivity.this,SettingsActivity.class);
-                            Pintent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            Intent Pintent2 = new Intent(SettingsActivity.this, SettingsActivity.class);
+                            Pintent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(Pintent2);
                             finish();
                     }
@@ -188,8 +168,7 @@ public class SettingsActivity extends AppCompatActivity
             };
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.options_menu, menu);
         return true;
@@ -197,37 +176,31 @@ public class SettingsActivity extends AppCompatActivity
 
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
+    public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
 
-        if (item.getItemId() == R.id.main_logout_option)
-        {
+        if (item.getItemId() == R.id.main_logout_option) {
             updateUserStatus("offline");
             mAuth.signOut();
             SendUserToLoginActivity();
         }
-        if (item.getItemId() == R.id.main_feedback_option)
-        {
+        if (item.getItemId() == R.id.main_feedback_option) {
             startActivity(new Intent(SettingsActivity.this, FeedbackActivity.class));
         }
-        if (item.getItemId() == R.id.main_help_option)
-        {
+        if (item.getItemId() == R.id.main_help_option) {
             startActivity(new Intent(SettingsActivity.this, WelcomeActivity.class));
         }
         return true;
     }
 
-    private void SendUserToLoginActivity()
-    {
+    private void SendUserToLoginActivity() {
         Intent loginIntent = new Intent(SettingsActivity.this, LoginActivity.class);
         loginIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(loginIntent);
 
     }
 
-    private void updateUserStatus(String state)
-    {
+    private void updateUserStatus(String state) {
         String saveCurrentTime, saveCurrentDate;
 
         Calendar calendar = Calendar.getInstance();
@@ -248,8 +221,7 @@ public class SettingsActivity extends AppCompatActivity
 
     }
 
-    private void SendUserToMainActivity()
-    {
+    private void SendUserToMainActivity() {
         Intent mainIntent = new Intent(SettingsActivity.this, MainChatActivity.class);
         mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(mainIntent);

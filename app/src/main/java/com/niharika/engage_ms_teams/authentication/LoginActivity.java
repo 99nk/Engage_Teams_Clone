@@ -23,8 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.niharika.engage_ms_teams.activities.HomeActivity;
 import com.niharika.engage_ms_teams.R;
 
-public class LoginActivity extends AppCompatActivity
-{
+public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ProgressDialog loadingBar;
 
@@ -35,8 +34,7 @@ public class LoginActivity extends AppCompatActivity
     private DatabaseReference UsersRef;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -49,8 +47,7 @@ public class LoginActivity extends AppCompatActivity
 
         NeedNewAccountLink.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
                 SendUserToRegisterActivity();
             }
         });
@@ -58,70 +55,56 @@ public class LoginActivity extends AppCompatActivity
 
         LoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
                 AllowUserToLogin();
             }
         });
 
         ForgetPasswordLink.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                startActivity(new Intent(LoginActivity.this,ResetPassword.class));
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, ResetPassword.class));
             }
         });
     }
 
 
-
-
     @Override
-    protected void onStart()
-    {
+    protected void onStart() {
         super.onStart();
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null)
-        {
+        if (currentUser != null) {
             SendUserToMainActivity();
         }
     }
 
 
-
-    private void AllowUserToLogin()
-    {
+    private void AllowUserToLogin() {
         String email = UserEmail.getText().toString();
         String password = UserPassword.getText().toString();
 
-        if (TextUtils.isEmpty(email))
-        {
+        if (TextUtils.isEmpty(email)) {
             Toast.makeText(this, "Please enter email...", Toast.LENGTH_SHORT).show();
         }
-        if (TextUtils.isEmpty(password))
-        {
+        if (TextUtils.isEmpty(password)) {
             Toast.makeText(this, "Please enter password...", Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
+        } else {
             loadingBar.setTitle("Sign In");
             loadingBar.setMessage("Please wait....");
             loadingBar.setCanceledOnTouchOutside(true);
             loadingBar.show();
-            mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful())
-                    {
+                    if (task.isSuccessful()) {
 
                         Toast.makeText(LoginActivity.this, "Logged in successfully", Toast.LENGTH_SHORT).show();
                         loadingBar.dismiss();
                         startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                    }
-                    else {
+                    } else {
                         loadingBar.dismiss();
-                        Toast.makeText(LoginActivity.this, "Error"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -130,9 +113,7 @@ public class LoginActivity extends AppCompatActivity
     }
 
 
-
-    private void InitializeFields()
-    {
+    private void InitializeFields() {
         LoginButton = (Button) findViewById(R.id.logbtn);
         UserEmail = (EditText) findViewById(R.id.log_email);
         UserPassword = (EditText) findViewById(R.id.log_password);
@@ -142,17 +123,14 @@ public class LoginActivity extends AppCompatActivity
     }
 
 
-
-    private void SendUserToMainActivity()
-    {
+    private void SendUserToMainActivity() {
         Intent mainIntent = new Intent(LoginActivity.this, HomeActivity.class);
         mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(mainIntent);
         finish();
     }
 
-    private void SendUserToRegisterActivity()
-    {
+    private void SendUserToRegisterActivity() {
         Intent registerIntent = new Intent(LoginActivity.this, RegisterActivity.class);
         startActivity(registerIntent);
     }
