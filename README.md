@@ -62,4 +62,13 @@ Developed an Android application cloning Microsoft Teams for Engage Program 2021
 - Firebase Realtime Database
 
 ## Instructions to open
-- Download the apk file (not with dark view)
+- Directly open the application using the apk
+###### OR
+- Open the master branch in your android studio.
+- Clone the main branch for web application.
+- Open account in Google Firebase.
+- Create a new project in Firebase.
+- Add both web and android apps to it.
+- Add the google-services.json file in your app
+- Add the firebase code in script.js file of main branch.
+- Deploy the main branch on any hosting site (Eg : Heroku in my case)  
